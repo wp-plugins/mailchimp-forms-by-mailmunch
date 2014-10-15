@@ -81,7 +81,7 @@
           'email' => $this->email,
           'password' => $this->password,
           'guest_user' => true,
-          'referral' => "wordpress-plugin"
+          'referral' => "mailchimp-wordpress-plugin"
           )
       ), true);
     }
@@ -92,7 +92,7 @@
         'user' => array(
           'email' => $this->email,
           'password' => $this->password,
-          'referral' => "wordpress-plugin"
+          'referral' => "mailchimp-wordpress-plugin"
           )
       ), true);
     }
