@@ -1,6 +1,6 @@
 ===  MailChimp Forms by MailMunch ===
 Contributors: mailmunch
-Tags: mailchimp, email, newsletter, signup, marketing, plugin, widget, forms, sign up form
+Tags: mailchimp, MailChimp form, MailChimp Newsletter form, MailChimp plugin, newsletter, newsletter form, newsletter form plugin, optin form, form, signup, signup forms, signup form, widget, email form, leads
 Requires at least: 3.0.1
 Tested up to: 4.0
 Stable tag: 1.0.1
@@ -11,12 +11,21 @@ MailChimp Forms by MailMunch allows you to painlessly add MailChimp sign up form
 
 == Description ==
 
-MailChimp Forms by MailMunch allows you to painlessly add MailChimp sign up forms to your WordPress site. You can add forms to posts, pages or sidebars with shortcodes, widgets or template tags. You can also show the forms as a popup or sticky top bar. Simply sign up and connect your MailChimp account into the plugin admin settings and it will pull in all your MailChimp lists. From there you can choose the lists you want to make forms for.
+> **MailChimp Forms by MailMunch allows you to painlessly add MailChimp sign up forms to your WordPress site. The form captures the lead and sends it to specific MailChimp lists automatically. You can set it to no op-in, opt-in, or double opt-in. You can add forms to posts, pages or sidebar, and also open it as a popup or top bar. Simply sign up and connect your MailChimp account into the plugin admin settings and it will pull in all your MailChimp lists. From there you can choose the lists you want to make forms for.
+**
 
 What is [MailChimp](http://www.mailchimp.com/)? MailChimp is one of the best email marketing tools. Signup up for a [FREE Trial Account](http://www.mailchimp.com/signup/) and see for yourself!
 
+We have put together our version of an improved signup plugin for MailChimp users to proactively sign-up new subscribers to their newsletter list.  Our form offers the same basic features that MailChimp's official plugin offers, but also much more.  In addition to the form, analytics will help you track the number of form views and subscriptions.
+
+Our templates have been carefully designed, so they can be customer-friendly and easy to set-up.  You'll have some basic customizations available from within the plugin.
+
 **Features**
 
+* Mobile optimized form
+* Easier sign-ups to your MailChimp newsletter
+* Automatic synching with your MailChimp account
+* Beautiful templates for your Mailchimp newsletter sign-up form
 * Complete Integration of MailChimp into WordPress
 * Easily import MailChimp forms from an active MailChimp account
 * Monitor MailChimp account activity
@@ -101,7 +110,7 @@ Easy MailChimp Forms is now translated into multiple languages:
 * Vietnamese
 * Welsh
 
-Read the Codex article [Installing WordPress in Your Language](http://codex.wordpress.org/Installing_WordPress_in_Your_Language) for more information. Also, please refer to our [Developer Docs](http://wordpress.org/plugins/yikes-inc-easy-mailchimp-extender/other_notes/).
+Read the Codex article [Installing WordPress in Your Language](http://codex.wordpress.org/Installing_WordPress_in_Your_Language) for more information.
 
 = Does this plugin slow down my site? =
 Absolutely not. MailMunch is designed with high performance and scalability in mind. It's completely asynchronous and hosted on Amazon's highly scalable infrastructure. Some of our customers have very high traffic websites.
