@@ -17,9 +17,13 @@
       return $this->ping('/sites');
     }
 
-    function widgets($site_id) {
+    function widgets($site_id, $widget_type_name) {
       $this->requestType = 'get';
-      return $this->ping('/sites/'.$site_id.'/widgets');
+      if (!empty($widget_type_name)) {
+        return $this->ping('/sites/'.$site_id.'/widgets?widget_type_name='.$widget_type_name);
+      } else {
+        return $this->ping('/sites/'.$site_id.'/widgets');
+      }
     }
 
     function getWidgetsHtml($site_id) {
