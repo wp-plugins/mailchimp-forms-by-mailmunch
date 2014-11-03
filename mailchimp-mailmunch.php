@@ -3,7 +3,7 @@
   Plugin Name: MailChimp Forms by MailMunch
   Plugin URI: http://connect.mailchimp.com/integrations/mailmunch-email-list-builder
   Description: The MailChimp plugin allows you to quickly and easily add signup forms for your MailChimp lists. Popup, Embedded, Top Bar and a variety of different options available.
-  Version: 1.0.2
+  Version: 1.0.3
   Author: MailMunch
   Author URI: http://www.mailmunch.co
   License: GPL2
@@ -14,7 +14,7 @@
   require_once( plugin_dir_path( __FILE__ ) . 'inc/sidebar_widget.php' );
 
   define( 'MAILCHIMP_MAILMUNCH_SLUG', "mailchimp-mailmunch");
-  define( 'MAILCHIMP_MAILMUNCH_VER', "1.0.2");
+  define( 'MAILCHIMP_MAILMUNCH_VER', "1.0.3");
   define( 'MAILCHIMP_MAILMUNCH_URL', "www.mailmunch.co");
 
   // Create unique WordPress instance ID
@@ -26,10 +26,21 @@
   add_action( 'admin_menu', 'mc_mm_register_page' );
 
   function mc_mm_register_page(){
-     $menu_page = add_menu_page( 'MailChimp Settings', 'MailChimp', 'manage_options', MAILCHIMP_MAILMUNCH_SLUG, 'mc_mm_setup', plugins_url( 'img/icon.png', __FILE__ ), 103.786 ); 
-     // If successful, load admin assets only on that page.
-     if ($menu_page) add_action('load-' . $menu_page, 'mc_mm_load_plugin_assets');
+    add_options_page('MailChimp', 'MailChimp', 'manage_options', MAILCHIMP_MAILMUNCH_SLUG, 'mc_mm_setup');
+    $menu_page = add_menu_page( 'MailChimp Settings', 'MailChimp', 'manage_options', MAILCHIMP_MAILMUNCH_SLUG, 'mc_mm_setup', plugins_url( 'img/icon.png', __FILE__ ), 103.786 ); 
+    // If successful, load admin assets only on that page.
+    if ($menu_page) add_action('load-' . $menu_page, 'mc_mm_load_plugin_assets');
   }
+
+  function mc_mm_plugin_settings_link($links)
+  {
+    $settings_link = '<a href="options-general.php?page='.MAILCHIMP_MAILMUNCH_SLUG.'">Settings</a>';
+    array_unshift($links, $settings_link);
+    return $links;
+  }
+
+  $plugin = plugin_basename(__FILE__);
+  add_filter('plugin_action_links_'.$plugin, 'mc_mm_plugin_settings_link');
 
   function mc_mm_load_plugin_assets() {
     add_action( 'admin_enqueue_scripts', 'mc_mm_enqueue_admin_styles' );
