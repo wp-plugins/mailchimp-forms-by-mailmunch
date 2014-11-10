@@ -117,15 +117,18 @@
     }
 
     function validPassword() {
-     $this->requestType = 'get';
-     $request = $this->ping('/sites');
+      $this->requestType = 'get';
+      $request = $this->ping('/sites');
+      if( is_wp_error( $request ) ) {
+        return new WP_Error( 'broke', "Unable to connect to MailMunch. Please try again later." );
+      }
 
-     if ($request['response']['code'] == 200){
-       return true;
-     }
-     else {
-       return false;
-     }
+      if ($request['response']['code'] == 200){
+        return true;
+      }
+      else {
+        return false;
+      }
     }
 
     function isNewUser($email) {
@@ -156,6 +159,11 @@
         $args = array_merge($args, array('method' => 'POST', 'body' => $options));
         $request = wp_remote_post($url, $args);
       }
+
+      if ( !is_wp_error( $request ) && $request['response']['code'] == 500 ) {
+        return new WP_Error( 'broke', "Internal Server Error" );
+      }
+
       return $request;
     }
   }
