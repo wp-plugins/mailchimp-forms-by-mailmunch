@@ -31,6 +31,7 @@ Our templates have been carefully designed, so they can be customer-friendly and
 * Use MailChimp Interest Group/Segments
 * Add MailChimp forms to posts, pages, or categories
 * Set forms to single or double opt-in
+* Send MailChimp welcome email
 * Customize the success message
 * Customize the submit button text
 * Redirect users to a page on submission
