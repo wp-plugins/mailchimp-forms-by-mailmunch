@@ -7,7 +7,7 @@ Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-MailChimp Forms by MailMunch allows you to painlessly add MailChimp sign up forms to your WordPress site as a popup, embedded widget or sticky top bar.
+The #1 MailChimp plugin to get more email subscribers. Painlessly add MailChimp sign up forms to your WordPress site as a popup, embedded widget or top bar.
 
 == Description ==
 
@@ -16,8 +16,6 @@ MailChimp Forms by MailMunch allows you to painlessly add MailChimp sign up form
 What is [MailChimp](http://www.mailchimp.com/)? MailChimp is one of the best email marketing tools. Signup up for a [FREE Trial Account](http://www.mailchimp.com/signup/) and see for yourself!
 
 We have put together our version of an improved signup plugin for MailChimp users to proactively sign-up new subscribers to their newsletter list.  Our form offers the same basic features that MailChimp's official plugin offers, but also much more.  In addition to the form, analytics will help you track the number of form views and subscriptions.
-
-Our templates have been carefully designed, so they can be customer-friendly and easy to set-up.  You'll have some basic customizations available from within the plugin.
 
 **Features**
 
@@ -61,6 +59,11 @@ If you are using Wordpress v3.0 or higher, you can use the short-code given duri
 ` [mailmunch-XYZ] `
 
 == Frequently Asked Questions ==
+
+= What in the world is MailChimp? =
+[MailChimp](http://mailchimp.com/features/all/) is full of useful, powerful email marketing features that are easy to use whether you're an email marketing expert, or a small business just getting started.
+
+To learn more, just check out: [MailChimp](http://mailchimp.com/features/all/)
 
 = Do I need to have a MailChimp Account? =
 Yes, you can register for one for free at [MailChimp](https://mailchimp.com/sign up/ "MailChimp Signup").
