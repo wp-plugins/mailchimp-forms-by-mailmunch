@@ -7,7 +7,7 @@ Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The #1 MailChimp plugin to get more email subscribers. Painlessly add MailChimp sign up forms to your WordPress site as a popup, embedded widget or top bar.
+The #1 MailChimp plugin to get more email subscribers. Easily add MailChimp sign-up forms as popup, embedded widget or sticky top bar.
 
 == Description ==
 
@@ -15,7 +15,7 @@ The #1 MailChimp plugin to get more email subscribers. Painlessly add MailChimp 
 
 What is [MailChimp](http://www.mailchimp.com/)? MailChimp is one of the best email marketing tools. Signup up for a [FREE Trial Account](http://www.mailchimp.com/signup/) and see for yourself!
 
-We have put together our version of an improved signup plugin for MailChimp users to proactively sign-up new subscribers to their newsletter list.  Our form offers the same basic features that MailChimp's official plugin offers, but also much more.  In addition to the form, analytics will help you track the number of form views and subscriptions.
+Our improved signup plugin for MailChimp will proactively sign-up new subscribers to your newsletter list. Our forms offer the same basic features that MailChimp's official plugin, but also much more. In addition to the form, analytics will help you track the number of form views and subscriptions.
 
 **Features**
 
@@ -134,6 +134,7 @@ Why people use MailChimp
 * MailChimp can send automated drip campaigns (scheduled emails)
 * MailChimp has better list management
 * MailChimp has great error messaging
+* MailChimp has interest groups/segments
 
 == Screenshots ==
 
