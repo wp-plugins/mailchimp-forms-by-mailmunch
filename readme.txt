@@ -17,8 +17,10 @@ What is [MailChimp](http://www.mailchimp.com/)? MailChimp is one of the best ema
 
 Our improved signup plugin for MailChimp will proactively sign-up new subscribers to your newsletter list. Our forms offer the same basic features that MailChimp's official plugin, but also much more. In addition to the form, analytics will help you track the number of form views and subscriptions.
 
-**Features**
+= Sign-Up Forms =
+Easily create sign-up forms for your MailChimp list and display it as a popup, embedded widget or a top bar.
 
+= Features =
 * Mobile optimized form
 * Easier sign-ups to your MailChimp newsletter
 * Automatic synching with your MailChimp account
@@ -30,8 +32,7 @@ Our improved signup plugin for MailChimp will proactively sign-up new subscriber
 * Add MailChimp forms to posts, pages, or categories
 * Set forms to single or double opt-in
 * Send MailChimp welcome email
-* Customize the success message
-* Customize the submit button text
+* Customize the success message and submit button text
 * Redirect users to a page on submission
 * Un-subscribe users from MailChimp lists
 * View subscriber MailChimp profiles
@@ -39,7 +40,7 @@ Our improved signup plugin for MailChimp will proactively sign-up new subscriber
 * Display multiple forms on a single page
 * Easily add forms to pages and posts with a button in the page/post editor
 
-After installation and creating your account, the plugin will guide you through connecting with MailChimp, selecting your List from our service, and then adding the form to your site. The time from starting installation to have the form on your site should be less than 5 minutes - absolutely everything can be done via our user friendly GUI - no file editing at all!
+After installation and creating your account, the plugin will guide you through connecting with MailChimp, selecting your MailChimp List from our service, and then adding the form to your site. The time from starting installation to have the form on your site should be less than 5 minutes - absolutely everything can be done via our user friendly GUI - no file editing at all!
 
 == Installation ==
 
@@ -85,38 +86,8 @@ After you connect your MailChimp account, the plugin will fetch all of your Mail
 = How do I add the MailChimp sign up forms to my site? =
 We offer a variety of forms: Popups, Embedded, Top Bar, etc. You can choose which pages, posts or categories to show it on. You can also use a shortcode to add a form to a specific area in a page or post. Everything is done visually.
 
-= How can I translate this plugin? =
-Easy MailChimp Forms is now translated into multiple languages:
-
-* Arabic
-* Chinese
-* English
-* French
-* German
-* Greek
-* Hebrew
-* Hindi
-* Hong Kong
-* Italian
-* Japanese
-* Korean
-* Persian
-* Portuguese (Brazilian)
-* Portuguese (European)
-* Romanian
-* Russian
-* Spanish
-* Swedish
-* Taiwanese
-* Tamil
-* Urdu
-* Vietnamese
-* Welsh
-
-Read the Codex article [Installing WordPress in Your Language](http://codex.wordpress.org/Installing_WordPress_in_Your_Language) for more information.
-
 = Does this plugin slow down my site? =
-Absolutely not. MailMunch is designed with high performance and scalability in mind. It's completely asynchronous and hosted on Amazon's highly scalable infrastructure. Some of our customers have very high traffic websites.
+Absolutely not. MailChimp by MailMunch is designed with high performance and scalability in mind. It's completely asynchronous and hosted on Amazon's highly scalable infrastructure. Some of our customers have very high traffic websites.
 
 = How many more emails will list builder help me get? =
 Most people see a 100% to 500% growth in their email subscribers.
