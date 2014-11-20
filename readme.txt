@@ -113,11 +113,14 @@ Why people use MailChimp
 2. The second step is configuring your optin form for things like when to show it, how often to show it, and where to go after they subscribe
 3. This is the integration step where you can connect your MailChimp account
 4. This is the final step where you can publish your optin form to all or selected posts, categories or pages
-5. And finally, we have the optin form working live on your blog - increasing your subscribers :)
-6. An example from a user site
-7. Another example from a user site
+5. And finally, we have the optin form working live on your blog - increasing your MailChimp subscribers :)
+6. A MailChimp connected form example from a user site
+7. Another MailChimp connected example from a user site
 
 == Changelog ==
+
+= 1.0.5 =
+* More MailChimp features
 
 = 1.0.1 =
 * The first version of MailChimp Forms WordPress plugin by MailMunch
