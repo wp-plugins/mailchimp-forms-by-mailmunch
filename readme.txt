@@ -1,4 +1,4 @@
-===  MailChimp Forms by MailMunch ===
+=== MailChimp Forms by MailMunch ===
 Contributors: mailmunch
 Tags: mailchimp, MailChimp form, MailChimp Newsletter form, MailChimp plugin, newsletter, newsletter form, newsletter form plugin, optin form, form, signup, signup forms, signup form, widget, email form, leads
 Requires at least: 3.0.1
@@ -21,7 +21,7 @@ Our improved signup plugin for MailChimp will proactively sign-up new subscriber
 Easily create sign-up forms for your MailChimp list and display it as a popup, embedded widget or a top bar.
 
 = Features =
-* Mobile optimized form
+* Mobile optimized MailChimp form
 * Easier sign-ups to your MailChimp newsletter
 * Automatic synching with your MailChimp account
 * Beautiful templates for your Mailchimp newsletter sign-up form
@@ -30,7 +30,7 @@ Easily create sign-up forms for your MailChimp list and display it as a popup, e
 * Monitor MailChimp account activity
 * Use MailChimp Interest Group/Segments
 * Add MailChimp forms to posts, pages, or categories
-* Set forms to single or double opt-in
+* Set forms to single or double opt-in for MailChimp
 * Send MailChimp welcome email
 * Customize the success message and submit button text
 * Redirect users to a page on submission
@@ -38,7 +38,7 @@ Easily create sign-up forms for your MailChimp list and display it as a popup, e
 * View subscriber MailChimp profiles
 * View individual form subscriber count
 * Display multiple forms on a single page
-* Easily add forms to pages and posts with a button in the page/post editor
+* Easily add MailChimp forms to pages and posts with a button in the page/post editor
 
 After installation and creating your account, the plugin will guide you through connecting with MailChimp, selecting your MailChimp List from our service, and then adding the form to your site. The time from starting installation to have the form on your site should be less than 5 minutes - absolutely everything can be done via our user friendly GUI - no file editing at all!
 
