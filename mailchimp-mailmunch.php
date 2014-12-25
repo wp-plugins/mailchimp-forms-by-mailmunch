@@ -3,7 +3,7 @@
   Plugin Name: MailChimp Forms by MailMunch
   Plugin URI: http://connect.mailchimp.com/integrations/mailmunch-email-list-builder
   Description: The MailChimp plugin allows you to quickly and easily add signup forms for your MailChimp lists. Popup, Embedded, Top Bar and a variety of different options available.
-  Version: 1.0.5
+  Version: 1.0.6
   Author: MailMunch
   Author URI: http://www.mailmunch.co
   License: GPL2
@@ -14,7 +14,7 @@
   require_once( plugin_dir_path( __FILE__ ) . 'inc/sidebar_widget.php' );
 
   define( 'MAILCHIMP_MAILMUNCH_SLUG', "mailchimp-mailmunch");
-  define( 'MAILCHIMP_MAILMUNCH_VER', "1.0.5");
+  define( 'MAILCHIMP_MAILMUNCH_VER', "1.0.6");
   define( 'MAILCHIMP_MAILMUNCH_URL', "www.mailmunch.co");
 
   // Create unique WordPress instance ID
@@ -155,25 +155,15 @@
 
         $mm = new MailchimpMailmunchApi($_POST["email"], $_POST["password"], "http://".MAILCHIMP_MAILMUNCH_URL);
         if ($mm->validPassword()) {
-          if (get_option("mc_mm_guest_user")) {
-            // User exists and credentials are correct
-            // Let's move optin forms from guest user to real user
-            $account_info = $mm_helpers->getEmailPassword();
-            $mc_mm_email = $account_info['email'];
-            $mc_mm_password = $account_info['password'];
-            $mm = new MailchimpMailmunchApi($mc_mm_email, $mc_mm_password, "http://".MAILCHIMP_MAILMUNCH_URL);
-            $result = $mm->importWidgets($_POST["email"], $_POST["password"]);
-          }
-
           update_option("mc_mm_user_email", $_POST["email"]);
-          update_option("mc_mm_user_password", $_POST["password"]);
+          update_option("mc_mm_user_password", base64_encode($_POST["password"]));
           delete_option("mc_mm_guest_user");
         }
 
       } else if ($post_action == "sign_up") {
 
-        if (empty($_POST["email"])) {
-          $invalid_email = true;
+        if (empty($_POST["email"]) || empty($_POST["password"])) {
+          $invalid_email_password = true;
         } else {
           $account_info = $mm_helpers->getEmailPassword();
           $mc_mm_email = $account_info['email'];
@@ -181,11 +171,13 @@
 
           $mm = new MailchimpMailmunchApi($mc_mm_email, $mc_mm_password, "http://".MAILCHIMP_MAILMUNCH_URL);
           if ($mm->isNewUser($_POST['email'])) {
-            $update_result = $mm->updateGuest($_POST['email']);
+            $update_result = $mm->updateGuest($_POST['email'], $_POST['password']);
             $result = json_decode($update_result['body']);
             update_option("mc_mm_user_email", $result->email);
+            update_option("mc_mm_user_password", base64_encode($_POST['password']));
             if (!$result->guest_user) { delete_option("mc_mm_guest_user"); }
             $mc_mm_email = $result->email;
+            $mc_mm_password = $_POST['password'];
 
             // We have update the guest with real email address, let's create a site now
             $mm = new MailchimpMailmunchApi($mc_mm_email, $mc_mm_password, "http://".MAILCHIMP_MAILMUNCH_URL);
@@ -220,6 +212,21 @@
           $request = $mm->deleteWidget($_POST["site_id"], $_POST["widget_id"]);
         }
 
+      } else if ($post_action == "create_site") { 
+        $site_url = (empty($_POST["site_url"]) ? get_bloginfo() : $_POST["site_url"]);
+        $site_name = (empty($_POST["site_name"]) ? home_url() : $_POST["site_name"]);
+
+        $account_info = $mm_helpers->getEmailPassword();
+        $mm = new MailchimpMailmunchApi($account_info['email'], $account_info["password"], "http://".MAILCHIMP_MAILMUNCH_URL);
+        $request = $mm->createSite($site_name, $site_url);
+        $site = json_decode($request['body']);
+
+        if (!empty($site->id)) {
+          $mc_mm_data = unserialize(get_option("mc_mm_data"));
+          $mc_mm_data["site_id"] = $site->id;
+          $mc_mm_data["script_src"] = $site->javascript_url;
+          update_option("mc_mm_data", serialize($mc_mm_data));
+        }
       }
     }
 
@@ -230,7 +237,7 @@
       $mm = new MailchimpMailmunchApi($mc_mm_email, $mc_mm_password, "http://".MAILCHIMP_MAILMUNCH_URL);
       $mm->createGuestUser();
       update_option("mc_mm_user_email", $mc_mm_email);
-      update_option("mc_mm_user_password", $mc_mm_password);
+      update_option("mc_mm_user_password", base64_encode($mc_mm_password));
       update_option("mc_mm_guest_user", true);
     }
 
@@ -256,7 +263,7 @@
         $mm = new MailchimpMailmunchApi($mc_mm_email, $mc_mm_password, "http://".MAILCHIMP_MAILMUNCH_URL);
         $mm->createGuestUser();
         update_option("mc_mm_user_email", $mc_mm_email);
-        update_option("mc_mm_user_password", $mc_mm_password);
+        update_option("mc_mm_user_password", base64_encode($mc_mm_password));
         update_option("mc_mm_guest_user", true);
       }
     }
@@ -310,21 +317,51 @@
 
     <p>Choose the site that you would like to link with your WordPress.</p>
 
-    <form action="" method="POST">
-      <div class="form-group">
-        <input type="hidden" name="action" value="save_settings" />
+    <div id="choose-site-form">
+      <form action="" method="POST">
+        <div class="form-group">
+          <input type="hidden" name="action" value="save_settings" />
 
-        <select name="mc_mm_data[site_id]">
-          <?php foreach ($sites as $site) { ?>
-          <option value="<?php echo $site->id ?>"><?php echo $site->name ?></option>
-          <?php } ?>
-        </select>
-      </div>
+          <select name="mailmunch_data[site_id]">
+            <?php foreach ($sites as $site) { ?>
+            <option value="<?php echo $site->id ?>"><?php echo $site->name ?></option>
+            <?php } ?>
+          </select>
+        </div>
 
-      <div class="form-group">
-        <input type="submit" value="Save Settings" />
-      </div>
-    </form>
+        <div class="form-group">
+          <input type="submit" value="Save Settings" class="button-primary" />
+        </div>
+      </form>
+
+      <p>
+        Don't see this site above? <a href="" onclick="document.getElementById('create-site-form').style.display = 'block'; document.getElementById('choose-site-form').style.display = 'none'; return false;">Create New Site</a>
+      </p>
+    </div>
+
+    <div id="create-site-form" style="display: none;">
+      <form action="" method="POST">
+        <input type="hidden" name="action" value="create_site" />
+
+        <div class="form-group">
+          <label>Site Name</label>
+          <input type="text" name="site_name" value="<?php echo get_bloginfo() ?>" />
+        </div>
+
+        <div class="form-group">
+          <label>Site URL</label>
+          <input type="text" name="site_url" value="<?php echo home_url() ?>" />
+        </div>
+
+        <div class="form-group">
+          <input type="submit" value="Create Site" class="button-primary" />
+        </div>
+      </form>
+
+      <p>
+        Already have a site in your MailMunch account? <a href="" onclick="document.getElementById('create-site-form').style.display = 'none'; document.getElementById('choose-site-form').style.display = 'block'; return false;">Choose Site</a>
+      </p>
+    </div>
   </div>
 <?php
         return;
@@ -339,11 +376,13 @@
 
     if ($mc_mm_guest_user) {
       $current_user = wp_get_current_user();
+
+      $modal_width = 550;
+      $modal_height = 450;
+      if (isset($user_exists) || isset($invalid_email_password)) { $modal_height = 500; }
 ?>
 
 <?php add_thickbox(); ?>
-
-<a id="signup-box-btn" href="#TB_inline?width=450&height=450&inlineId=signup-signin-box" title="Create Account" class="thickbox" style="display: none;">Sign Up</a>
 
 <div id="signup-signin-box" style="display:none;">
   <div id="sign-up-form" class="<?php if (!$_POST || ($_POST["action"] != "sign_in" && $_POST["action"] != "unlink_account")) { ?> active<?php } ?>">
@@ -360,8 +399,8 @@
 
       <?php if (isset($user_exists)) { ?>
       <div id="invalid-alert" class="alert alert-danger" role="alert">Account with this email already exists. Please sign in using your password.</div>
-      <?php } else if (isset($invalid_email)) { ?>
-      <div id="invalid-alert" class="alert alert-danger" role="alert">Invalid email. Please enter a valid email below.</div>
+      <?php } else if (isset($invalid_email_password)) { ?>
+      <div id="invalid-alert" class="alert alert-danger" role="alert">Invalid email or password. Please enter a valid email and password below.</div>
       <?php } ?>
 
       <form action="" method="POST">
@@ -380,6 +419,11 @@
         <div class="form-group">
           <label>Email Address</label>
           <input type="email" placeholder="Email Address" name="email" value="<?php echo $current_user->user_email ?>" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="Password" name="password" class="form-control" />
         </div>
 
         <div class="form-group">
@@ -427,7 +471,7 @@
 ?>
 <script>
 jQuery(window).load(function() {
-  showSignupBox();
+  showSignupBox(<?php echo $modal_width; ?>, <?php echo $modal_height; ?>);
 });
 </script>
 <?php

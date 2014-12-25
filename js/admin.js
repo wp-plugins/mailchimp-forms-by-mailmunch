@@ -35,9 +35,11 @@ function showSignUpForm() {
     document.getElementById("sign-up-form").style.display = 'block';
 }
 
-function showSignupBox() {
+function showSignupBox(width, height) {
+    if (!width) width = 550;
+    if (!height) height = 450;
     document.getElementById('why-account').style.display = 'none';
-    tb_show("Create Account","#TB_inline?width=550&height=450&inlineId=signup-signin-box",null);
+    tb_show("Create Account","#TB_inline?width="+width+"&height="+height+"&inlineId=signup-signin-box",null);
     return false;
 }
 
