@@ -376,10 +376,6 @@
 
     if ($mc_mm_guest_user) {
       $current_user = wp_get_current_user();
-
-      $modal_width = 550;
-      $modal_height = 450;
-      if (isset($user_exists) || isset($invalid_email_password)) { $modal_height = 500; }
 ?>
 
 <?php add_thickbox(); ?>
@@ -398,9 +394,9 @@
       </div>
 
       <?php if (isset($user_exists)) { ?>
-      <div id="invalid-alert" class="alert alert-danger" role="alert">Account with this email already exists. Please sign in using your password.</div>
+      <div id="invalid-alert" class="alert alert-danger signup-alert" role="alert">Account with this email already exists. Please sign in using your password.</div>
       <?php } else if (isset($invalid_email_password)) { ?>
-      <div id="invalid-alert" class="alert alert-danger" role="alert">Invalid email or password. Please enter a valid email and password below.</div>
+      <div id="invalid-alert" class="alert alert-danger signup-alert" role="alert">Invalid email or password. Please enter a valid email and password below.</div>
       <?php } ?>
 
       <form action="" method="POST">
@@ -439,7 +435,7 @@
     <p>Sign in using your email and password below.</p>
 
     <?php if ($_POST && $_POST["action"] == "sign_in") { ?>
-    <div id="invalid-alert" class="alert alert-danger" role="alert">Invalid Email or Password. Please try again.</div>
+    <div id="invalid-alert" class="alert alert-danger signin-alert" role="alert">Invalid Email or Password. Please try again.</div>
     <?php } ?>
 
     <div class="form-container">
@@ -471,7 +467,11 @@
 ?>
 <script>
 jQuery(window).load(function() {
-  showSignupBox(<?php echo $modal_width; ?>, <?php echo $modal_height; ?>);
+  <?php if ($_POST && ($_POST["action"] == "sign_in" || $_POST["action"] == "unlink_account")) { ?>
+  showSignInForm();
+  <?php } else { ?>
+  showSignUpForm();
+  <?php } ?>
 });
 </script>
 <?php
