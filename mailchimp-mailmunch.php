@@ -3,7 +3,7 @@
   Plugin Name: MailChimp Forms by MailMunch
   Plugin URI: http://connect.mailchimp.com/integrations/mailmunch-email-list-builder
   Description: The MailChimp plugin allows you to quickly and easily add signup forms for your MailChimp lists. Popup, Embedded, Top Bar and a variety of different options available.
-  Version: 1.0.6
+  Version: 1.0.7
   Author: MailMunch
   Author URI: http://www.mailmunch.co
   License: GPL2
@@ -14,7 +14,7 @@
   require_once( plugin_dir_path( __FILE__ ) . 'inc/sidebar_widget.php' );
 
   define( 'MAILCHIMP_MAILMUNCH_SLUG', "mailchimp-mailmunch");
-  define( 'MAILCHIMP_MAILMUNCH_VER', "1.0.6");
+  define( 'MAILCHIMP_MAILMUNCH_VER', "1.0.7");
   define( 'MAILCHIMP_MAILMUNCH_URL', "www.mailmunch.co");
 
   // Create unique WordPress instance ID
