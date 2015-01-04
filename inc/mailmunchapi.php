@@ -150,7 +150,7 @@
         $request = wp_remote_post($url, $args);
       }
 
-      if ( !is_wp_error( $request ) && $request['response']['code'] == 500 ) {
+      if ( !is_wp_error( $request ) && ( $request['response']['code'] == 500 || $request['response']['code'] == 503 ) ) {
         return new WP_Error( 'broke', "Internal Server Error" );
       }
 
