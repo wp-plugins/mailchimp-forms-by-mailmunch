@@ -378,12 +378,17 @@
       $current_user = wp_get_current_user();
 ?>
 
-<?php add_thickbox(); ?>
+<div id="signup-signin-box-overlay" onclick="hideSignupBox();" style="display: none;"></div>
 
 <div id="signup-signin-box" style="display:none;">
+  <a id="signup-signin-close" onclick="hideSignupBox();">
+    <img src="<?php echo plugins_url( 'img/close.png', __FILE__ ) ?>" />
+  </a>
+
   <div id="sign-up-form" class="<?php if (!$_POST || ($_POST["action"] != "sign_in" && $_POST["action"] != "unlink_account")) { ?> active<?php } ?>">
     <div class="form-container">
-      <p style="margin-bottom: 0px;">To activate your MailChimp forms, we will now create your account on MailMunch (<a onclick="showWhyAccount();" id="why-account-btn">Why?</a>).</p>
+      <h2 class="modal-header">Sign Up</h2>
+      <p>To activate your MailChimp forms, we will now create your account on MailMunch (<a onclick="showWhyAccount();" id="why-account-btn">Why?</a>).</p>
 
       <div id="why-account" class="alert alert-warning" style="display: none;">
         <h4>Why do I need a MailMunch account?</h4>
@@ -432,6 +437,7 @@
   </div>
 
   <div id="sign-in-form" class="<?php if ($_POST && ($_POST["action"] == "sign_in" || $_POST["action"] == "unlink_account")) { ?> active<?php } ?>">
+    <h2 class="modal-header">Sign In</h2>
     <p>Sign in using your email and password below.</p>
 
     <?php if ($_POST && $_POST["action"] == "sign_in") { ?>
