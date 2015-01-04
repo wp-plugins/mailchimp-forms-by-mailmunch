@@ -25,28 +25,74 @@ window.onmessage = function (e) {
   }
 };
 
+function repositionSignupBox() {
+    divId = 'signup-signin-box';
+    var divWidth, divHeight;
+    var objDiv = document.getElementById(divId);
+
+    if (objDiv.clientWidth) {
+        divWidth = objDiv.clientWidth;
+        divHeight = objDiv.clientHeight;
+    }
+    else if (objDiv.offsetWidth)
+    {
+        divWidth = objDiv.offsetWidth;
+        divHeight = objDiv.offsetHeight;
+    }
+
+    // Get the x and y coordinates of the center in output browser's window 
+    var centerX, centerY;
+    if (window.innerHeight)
+    {
+        centerX = window.innerWidth;
+        centerY = window.innerHeight;
+    }
+    else if (document.documentElement && document.documentElement.clientHeight)
+    {
+        centerX = document.documentElement.clientWidth;
+        centerY = document.documentElement.clientHeight;
+    }
+    else if (document.body)
+    {
+        centerX = document.body.clientWidth;
+        centerY = document.body.clientHeight;
+    }
+
+    var offsetLeft = (centerX - divWidth) / 2;
+    var offsetTop = (centerY - divHeight) / 2;
+
+    objDiv.style.top = offsetTop + 'px';
+    objDiv.style.left = offsetLeft + 'px';
+}
+
 function showSignInForm() {
     document.getElementById("sign-up-form").style.display = 'none';
     document.getElementById("sign-in-form").style.display = 'block';
     document.getElementById('why-account').style.display = 'none';
-    showSignupBox(500, 450);
+    showSignupBox();
 }
 
 function showSignUpForm() {
     document.getElementById("sign-in-form").style.display = 'none';
     document.getElementById("sign-up-form").style.display = 'block';
     document.getElementById('why-account').style.display = 'none';
-    showSignupBox(600, 500);
+    showSignupBox();
 }
 
 function showSignupBox(width, height) {
-    if (!width) width = 600;
-    if (!height) height = 500;
-    tb_show("Create Account","#TB_inline?width="+width+"&height="+height+"&inlineId=signup-signin-box",null);
+    document.getElementById("signup-signin-box-overlay").style.display = 'block';
+    document.getElementById("signup-signin-box").style.display = 'block';
+    repositionSignupBox();
+
     return false;
+}
+
+function hideSignupBox() {
+    document.getElementById("signup-signin-box-overlay").style.display = 'none';
+    document.getElementById("signup-signin-box").style.display = 'none';
 }
 
 function showWhyAccount() {
     document.getElementById('why-account').style.display = 'block';
-    showSignupBox(600, 600);
+    repositionSignupBox();
 }
