@@ -37,7 +37,7 @@ Easily create sign-up forms for your MailChimp list and display it as a popup, e
 * Un-subscribe users from MailChimp lists
 * View subscriber MailChimp profiles
 * View individual form subscriber count
-* Display multiple forms on a single page
+* Display multiple MailChimp forms on a single page
 * Easily add MailChimp forms to pages and posts with a button in the page/post editor
 
 After installation and creating your account, the plugin will guide you through connecting with MailChimp, selecting your MailChimp List from our service, and then adding the form to your site. The time from starting installation to have the form on your site should be less than 5 minutes - absolutely everything can be done via our user friendly GUI - no file editing at all!
