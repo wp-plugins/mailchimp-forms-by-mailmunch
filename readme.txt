@@ -36,7 +36,7 @@ Easily create sign-up forms for your MailChimp list and display it as a popup, e
 * Redirect users to a page on submission
 * Un-subscribe users from MailChimp lists
 * View subscriber MailChimp profiles
-* View individual form subscriber count
+* View individual MailChimp form subscriber count
 * Display multiple MailChimp forms on a single page
 * Easily add MailChimp forms to pages and posts with a button in the page/post editor
 
