@@ -17,7 +17,7 @@ What is [MailChimp](http://www.mailchimp.com/)? MailChimp is one of the best ema
 
 [vimeo http://vimeo.com/117103275]
 
-Our improved signup plugin for MailChimp will proactively sign-up new subscribers to your newsletter list. Our forms offer the same basic features that MailChimp's official plugin, but also much more. In addition to the form, analytics will help you track the number of form views and subscriptions.
+Our improved signup plugin for MailChimp will proactively sign-up new subscribers to your MailChimp newsletter list. Our forms offer the same basic features that MailChimp's official plugin, but also much more. In addition to the form, analytics will help you track the number of form views and subscriptions.
 
 = Sign-Up Forms =
 Easily create sign-up forms for your MailChimp list and display it as a popup, embedded widget or a top bar.
@@ -55,7 +55,7 @@ This section describes how to install the plugin and get started using it.
 4. Sign up and create your first optin form
 5. Choose the optin form type: Popover, Embedded or Top Bar
 6. Connect MailChimp and choose a list
-7. Start collecting user emails and growing your subscriber list!
+7. Start collecting user emails and growing your MailChimp subscriber list!
 
 = Advanced =
 If you are using Wordpress v3.0 or higher, you can use the short-code given during the optin form creation. It will look something like this:
@@ -80,7 +80,7 @@ For more help, visit the MailChimp Support article [How do I create a new list?]
 The first step is to activate the plugin and sign up. Then we will guide you through the process of connecting your MailChimp account and choosing the list. This is done on the WordPress admin "MailChimp" menu page.
 
 = Do I need MailChimp's API Key? =
-You don't have to worry about that. We will guide you through the process.
+You don't have to worry about that. We will guide you through the MailChimp flow.
 
 = How do I add my MailChimp lists? =
 After you connect your MailChimp account, the plugin will fetch all of your MailChimp list information and load it into the plugin admin. You can simply choose the lists you want to make forms for.
