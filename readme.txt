@@ -15,6 +15,8 @@ The #1 MailChimp plugin to get more email subscribers. Easily add MailChimp sign
 
 What is [MailChimp](http://www.mailchimp.com/)? MailChimp is one of the best email marketing tools. Signup up for a [FREE Trial Account](http://www.mailchimp.com/signup/) and see for yourself!
 
+[vimeo http://vimeo.com/117103275]
+
 Our improved signup plugin for MailChimp will proactively sign-up new subscribers to your newsletter list. Our forms offer the same basic features that MailChimp's official plugin, but also much more. In addition to the form, analytics will help you track the number of form views and subscriptions.
 
 = Sign-Up Forms =
