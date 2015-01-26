@@ -83,10 +83,10 @@ The first step is to activate the plugin and sign up. Then we will guide you thr
 You don't have to worry about that. We will guide you through the MailChimp flow.
 
 = How do I add my MailChimp lists? =
-After you connect your MailChimp account, the plugin will fetch all of your MailChimp list information and load it into the plugin admin. You can simply choose the lists you want to make forms for.
+After you connect your MailChimp account, the plugin will fetch all of your MailChimp list information and load it into the plugin admin. You can simply choose the MailChimp lists you want to make forms for.
 
 = How do I add the MailChimp sign up forms to my site? =
-We offer a variety of forms: Popups, Embedded, Top Bar, etc. You can choose which pages, posts or categories to show it on. You can also use a shortcode to add a form to a specific area in a page or post. Everything is done visually.
+We offer a variety of forms: Popups, Embedded, Top Bar, etc. You can choose which pages, posts or categories to show it on. You can also use a shortcode to add a MailChimp form to a specific area in a page or post. Everything is done visually.
 
 = Does this plugin slow down my site? =
 Absolutely not. MailChimp by MailMunch is designed with high performance and scalability in mind. It's completely asynchronous and hosted on Amazon's highly scalable infrastructure. Some of our customers have very high traffic websites.
@@ -112,10 +112,10 @@ Why people use MailChimp
 == Screenshots ==
 
 1. This is the MailChimp optin form designer by MailMunch where you can customize your optin form
-2. The second step is configuring your optin form for things like when to show it, how often to show it, and where to go after they subscribe
+2. The second step is configuring your MailChimp form for things like when to show it, how often to show it, and where to go after they subscribe
 3. This is the integration step where you can connect your MailChimp account
-4. This is the final step where you can publish your optin form to all or selected posts, categories or pages
-5. And finally, we have the optin form working live on your blog - increasing your MailChimp subscribers :)
+4. This is the final step where you can publish your MailChimp form to all or selected posts, categories or pages
+5. And finally, we have the MailChimp form working live on your blog - increasing your MailChimp subscribers :)
 6. A MailChimp connected form example from a user site
 7. Another MailChimp connected example from a user site
 
