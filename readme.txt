@@ -3,7 +3,7 @@ Contributors: mailmunch
 Tags: mailchimp, MailChimp form, MailChimp Newsletter form, MailChimp plugin, newsletter, newsletter form, newsletter form plugin, optin form, form, signup, signup forms, signup form, widget, email form, leads
 Requires at least: 3.0.1
 Tested up to: 4.1
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,7 +58,7 @@ This section describes how to install the plugin and get started using it.
 7. Start collecting user emails and growing your MailChimp subscriber list!
 
 = Advanced =
-If you are using Wordpress v3.0 or higher, you can use the short-code given during the optin form creation. It will look something like this:
+If you are using Wordpress v3.0 or higher, you can use the short-code given during the MailChimp form creation. It will look something like this:
 ` [mailmunch-XYZ] `
 
 == Frequently Asked Questions ==
@@ -86,13 +86,13 @@ You don't have to worry about that. We will guide you through the MailChimp flow
 After you connect your MailChimp account, the plugin will fetch all of your MailChimp list information and load it into the plugin admin. You can simply choose the MailChimp lists you want to make forms for.
 
 = How do I add the MailChimp sign up forms to my site? =
-We offer a variety of forms: Popups, Embedded, Top Bar, etc. You can choose which pages, posts or categories to show it on. You can also use a shortcode to add a MailChimp form to a specific area in a page or post. Everything is done visually.
+We offer a variety of forms: Popups, Embedded, Top Bar, etc. You can choose which pages, posts or categories to show MailChimp form on. You can also use a shortcode to add a MailChimp form to a specific area in a page or post. Everything is done visually.
 
 = Does this plugin slow down my site? =
 Absolutely not. MailChimp by MailMunch is designed with high performance and scalability in mind. It's completely asynchronous and hosted on Amazon's highly scalable infrastructure. Some of our customers have very high traffic websites.
 
 = How many more emails will list builder help me get? =
-Most people see a 100% to 500% growth in their email subscribers.
+Most people see a 100% to 500% growth in their MailChimp email subscribers.
 
 == Other Notes ==
 
@@ -120,6 +120,9 @@ Why people use MailChimp
 7. Another MailChimp connected example from a user site
 
 == Changelog ==
+
+= 1.0.9 =
+* Faster MailChimp forms
 
 = 1.0.5 =
 * More MailChimp features
