@@ -1,6 +1,7 @@
 === MailChimp Forms by MailMunch ===
 Contributors: mailmunch
-Tags: mailchimp, MailChimp form, MailChimp Newsletter form, MailChimp plugin, newsletter, newsletter form, newsletter form plugin, optin form, form, signup, signup forms, signup form, widget, email form, leads
+Tags: mailchimp,mailchimp form,mailchimp newsletter,mailchimp plugin,newsletter,newsletter form, optin form, form, signup, signup forms, signup form, mailchimp widget, email form, leads, mailchimp subscribe
+
 Requires at least: 3.0.1
 Tested up to: 4.1
 Stable tag: 1.0.9
@@ -11,7 +12,7 @@ The #1 MailChimp plugin to get more email subscribers. Easily add MailChimp sign
 
 == Description ==
 
-> MailChimp Forms by MailMunch allows you to painlessly add MailChimp sign up forms to your WordPress site. The form captures the lead and sends it to specific MailChimp lists automatically. You can set it to no op-in, opt-in, or double opt-in. You can add forms to posts, pages or sidebar, and also open it as a popup or top bar. Simply sign up and connect your MailChimp account into the plugin admin settings and it will pull in all your MailChimp lists. From there you can choose the lists you want to make forms for.
+> MailChimp Forms by MailMunch allows you to painlessly add MailChimp sign up forms to your WordPress site. The MailChimp form captures the lead and sends it to specific MailChimp lists automatically. You can set it to no op-in, opt-in, or double opt-in. You can add MailChimp forms to posts, pages or sidebar, and also open it as a popup or top bar. Simply sign up and connect your MailChimp account into the plugin admin settings and it will pull in all your MailChimp lists. From there you can choose the lists you want to make forms for.
 
 What is [MailChimp](http://www.mailchimp.com/)? MailChimp is one of the best email marketing tools. Signup up for a [FREE Trial Account](http://www.mailchimp.com/signup/) and see for yourself!
 
@@ -46,14 +47,14 @@ After installation and creating your account, the plugin will guide you through 
 
 == Installation ==
 
-This section describes how to install the plugin and get started using it.
+This section describes how to install the MailChimp plugin and get started using it.
 
 = Version 2.8+ =
 1. Unzip our archive and upload the entire `mailchimp-mailmunch` directory to your `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Look for "MailChimp" in the WordPress admin menu and click it
-4. Sign up and create your first optin form
-5. Choose the optin form type: Popover, Embedded or Top Bar
+4. Sign up and create your first MailChimp optin form
+5. Choose the MailChimp optin form type: Popover, Embedded or Top Bar
 6. Connect MailChimp and choose a list
 7. Start collecting user emails and growing your MailChimp subscriber list!
 
