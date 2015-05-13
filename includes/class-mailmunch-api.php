@@ -17,6 +17,10 @@
       $userToken = $this->getUserToken();
       if (empty($userToken)) {
         $userToken = $this->generateUserToken();
+        if( is_wp_error( $userToken ) ) {
+          return new WP_Error( 'broke', "Unable to connect to MailMunch. Please try again later." );
+        }
+        
         $this->setUserToken($userToken);
       }
     }
