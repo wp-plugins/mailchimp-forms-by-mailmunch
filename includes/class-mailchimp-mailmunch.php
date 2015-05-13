@@ -14,8 +14,8 @@
  */
 
 // Define some class constants.
-define( 'MAILCHIMP_MAILMUNCH_URL', "http://local.mailmunch.co:3000" );
-define( 'MAILCHIMP_MAILMUNCH_HOME_URL', "http://127.0.0.1:3000" );
+define( 'MAILCHIMP_MAILMUNCH_URL', "http://wordpress.mailmunch.co" );
+define( 'MAILCHIMP_MAILMUNCH_HOME_URL', "http://www.mailmunch.co" );
 define( 'MAILCHIMP_MAILMUNCH_SLUG', "mailchimp-mailmunch" );
 define( 'MAILCHIMP_MAILMUNCH_PREFIX', 'mc_mm' );
 
