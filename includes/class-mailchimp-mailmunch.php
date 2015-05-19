@@ -203,8 +203,10 @@ class Mailchimp_Mailmunch {
 		$this->loader->add_action( 'wp_ajax_delete_widget', $plugin_admin, 'delete_widget' );
 
 		// Settings link
-		$plugin = plugin_basename( plugin_dir_path( 'mailchimp-mailmunch.php' ) . 'mailchimp-mailmunch.php' );
-		$this->loader->add_filter( 'plugin_action_links_'.$plugin, $plugin_admin, 'settings_link');
+		$pluginBaseName = plugin_basename(__FILE__);
+		$exploded = explode('/', $pluginBaseName);
+		$pluginFilePath = $exploded[0]. '/mailchimp-mailmunch.php';
+		$this->loader->add_filter( 'plugin_action_links_'. $pluginFilePath, $plugin_admin, 'settings_link');
 
 	}
 
