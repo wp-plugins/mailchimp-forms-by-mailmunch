@@ -351,7 +351,7 @@
 
       if (!$skipTokenAuth) {
         $parsedUrl = parse_url($url);
-        $parseUrlQuery = $parsedUrl['query'];
+        $parseUrlQuery = isset($parsedUrl['query']) ? $parsedUrl['query'] : null;
         if (!empty($parseUrlQuery)) {
           $url .= '&token='. $this->getUserToken();
         }

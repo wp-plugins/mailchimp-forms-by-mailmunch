@@ -154,15 +154,6 @@ class Mailchimp_Mailmunch_Admin {
 	}
 
 	/**
-	 * Register sidebar widget
-	 *
-	 * @since    2.0.0
-	 */
-	public function sidebar_widget() {
-		register_widget( 'Mailchimp_Mailmunch_Sidebar_Widget' );
-	}
-
-	/**
 	 * Get current step
 	 *
 	 * @since    2.0.0
@@ -198,7 +189,7 @@ class Mailchimp_Mailmunch_Admin {
 			break;
 
 			case 'integrate':
-				if ($_POST['access_token']) {
+				if (isset($_POST['access_token'])) {
 					update_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token', $_POST['access_token']);
 				}
 
@@ -209,7 +200,7 @@ class Mailchimp_Mailmunch_Admin {
 			break;
 
 			default:
-				if ($_POST['list_id']) {
+				if (isset($_POST['list_id'])) {
 					update_option($this->mailmunch_api->getPrefix(). 'mailchimp_list_id', $_POST['list_id']);
 
 					require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/drewm_mailchimp.php';

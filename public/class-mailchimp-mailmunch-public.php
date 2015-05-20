@@ -60,6 +60,15 @@ class Mailchimp_Mailmunch_Public {
 	}
 
 	/**
+	 * Register sidebar widget
+	 *
+	 * @since    2.0.0
+	 */
+	public function sidebar_widget() {
+		register_widget( 'Mailchimp_Mailmunch_Sidebar_Widget' );
+	}
+
+	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
 	 * @since    2.0.0

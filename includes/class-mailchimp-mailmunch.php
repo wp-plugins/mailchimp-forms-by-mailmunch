@@ -194,9 +194,6 @@ class Mailchimp_Mailmunch {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'menu' );
 
-		// Sidebar widget
-		$this->loader->add_action( 'widgets_init', $plugin_admin, 'sidebar_widget' );
-
 		// Ajax calls
 		$this->loader->add_action( 'wp_ajax_sign_up', $plugin_admin, 'sign_up' );
 		$this->loader->add_action( 'wp_ajax_sign_in', $plugin_admin, 'sign_in' );
@@ -225,6 +222,9 @@ class Mailchimp_Mailmunch {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_filter( 'the_content', $plugin_public, 'add_post_containers' );
+
+		// Sidebar widget
+		$this->loader->add_action( 'widgets_init', $plugin_public, 'sidebar_widget' );
 
 	}
 
