@@ -203,7 +203,7 @@ class Mailchimp_Mailmunch_Admin {
 				}
 
 				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/drewm_mailchimp.php';
-				$mailchimpApi = new \Drewm\MailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
+				$mailchimpApi = new DrewmMailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
 				$lists = $mailchimpApi->call('lists/list');
 				require_once(plugin_dir_path( __FILE__ ) . 'partials/mailchimp-mailmunch-integrate.php');
 			break;
@@ -213,7 +213,7 @@ class Mailchimp_Mailmunch_Admin {
 					update_option($this->mailmunch_api->getPrefix(). 'mailchimp_list_id', $_POST['list_id']);
 
 					require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/drewm_mailchimp.php';
-					$mailchimpApi = new \Drewm\MailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
+					$mailchimpApi = new DrewmMailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
 					$lists = $mailchimpApi->call('lists/list');
 					$listName = '';
 					if ($lists['total'] > 0) {
