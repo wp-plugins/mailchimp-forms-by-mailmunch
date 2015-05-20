@@ -32,7 +32,7 @@
 	$(function() {
 	 	$("#connect-mailchimp").click(function() {
 	 		var width = 500;
-	 		var height = 550;
+	 		var height = 650;
 	 		window.open($(this).attr("href"), "MailMunchIntegration", "top="+ (($(window).height()/2)-(height/2)) +", left="+ (($(window).width()/2)-(width/2)) +", width="+width+", height="+height);
 	 		return false;
 	 	});
