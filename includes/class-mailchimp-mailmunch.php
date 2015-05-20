@@ -94,7 +94,7 @@ class Mailchimp_Mailmunch {
 
 		$this->plugin_name = 'MailChimp Forms by MailMunch';
 		$this->integration_name = 'MailChimp';
-		$this->version = '2.0.0';
+		$this->version = '2.0.1';
 
 		$this->load_dependencies();
 		$this->set_locale();

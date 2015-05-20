@@ -302,7 +302,7 @@
       }
 
       $newUser = json_decode($request['body']);
-      if ($newUser->site_id != $this->getSiteId()) {
+      if (intval($newUser->site_id) && $newUser->site_id != $this->getSiteId()) {
         $this->setSiteId($newUser->site_id);
       }
       return $newUser;
@@ -329,7 +329,7 @@
       }
 
       $newUser = json_decode($request['body']);
-      if ($newUser->site_id != $this->getSiteId()) {
+      if (intval($newUser->site_id) && $newUser->site_id != $this->getSiteId()) {
         $this->setSiteId($newUser->site_id);
       }
       return $newUser;
