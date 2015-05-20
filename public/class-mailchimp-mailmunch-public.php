@@ -52,6 +52,20 @@ class Mailchimp_Mailmunch_Public {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
+		add_shortcode('mailmunch-form', array($this, 'shortcode_form'));
+	}
+
+	public function shortcode_form($atts) {
+		return "<div class='mailmunch-forms-short-code mailmunch-forms-widget-".$atts['id']."' style='display: none !important;'></div>";
+	}
+
+	/**
+	 * Register sidebar widget
+	 *
+	 * @since    2.0.0
+	 */
+	public function sidebar_widget() {
+		register_widget( 'Mailchimp_Mailmunch_Sidebar_Widget' );
 	}
 
 	/**

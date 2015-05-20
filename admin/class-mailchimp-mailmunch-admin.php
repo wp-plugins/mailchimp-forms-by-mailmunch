@@ -154,21 +154,18 @@ class Mailchimp_Mailmunch_Admin {
 	}
 
 	/**
-	 * Register sidebar widget
-	 *
-	 * @since    2.0.0
-	 */
-	public function sidebar_widget() {
-		register_widget( 'Mailchimp_Mailmunch_Sidebar_Widget' );
-	}
-
-	/**
 	 * Get current step
 	 *
 	 * @since    2.0.0
 	 */
 	public function getStep() {
-		if (isset($_GET['step'])) { $step = $_GET['step']; }
+		if (isset($_GET['step'])) {
+			$step = $_GET['step'];
+			if ($step == 'skip_onboarding') {
+				$this->mailmunch_api->setSkipOnBoarding();
+				$step = '';
+			}
+		}
 		elseif ($this->mailmunch_api->skipOnBoarding()) { $step = ''; }
 		else {
 			$step = 'connect';
@@ -198,22 +195,22 @@ class Mailchimp_Mailmunch_Admin {
 			break;
 
 			case 'integrate':
-				if ($_POST['access_token']) {
+				if (isset($_POST['access_token'])) {
 					update_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token', $_POST['access_token']);
 				}
 
 				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/drewm_mailchimp.php';
-				$mailchimpApi = new \Drewm\MailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
+				$mailchimpApi = new DrewmMailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
 				$lists = $mailchimpApi->call('lists/list');
 				require_once(plugin_dir_path( __FILE__ ) . 'partials/mailchimp-mailmunch-integrate.php');
 			break;
 
 			default:
-				if ($_POST['list_id']) {
+				if (isset($_POST['list_id'])) {
 					update_option($this->mailmunch_api->getPrefix(). 'mailchimp_list_id', $_POST['list_id']);
 
 					require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/drewm_mailchimp.php';
-					$mailchimpApi = new \Drewm\MailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
+					$mailchimpApi = new DrewmMailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
 					$lists = $mailchimpApi->call('lists/list');
 					$listName = '';
 					if ($lists['total'] > 0) {

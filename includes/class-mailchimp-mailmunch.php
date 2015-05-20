@@ -94,7 +94,7 @@ class Mailchimp_Mailmunch {
 
 		$this->plugin_name = 'MailChimp Forms by MailMunch';
 		$this->integration_name = 'MailChimp';
-		$this->version = '2.0.0';
+		$this->version = '2.0.1';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -194,17 +194,16 @@ class Mailchimp_Mailmunch {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'menu' );
 
-		// Sidebar widget
-		$this->loader->add_action( 'widgets_init', $plugin_admin, 'sidebar_widget' );
-
 		// Ajax calls
 		$this->loader->add_action( 'wp_ajax_sign_up', $plugin_admin, 'sign_up' );
 		$this->loader->add_action( 'wp_ajax_sign_in', $plugin_admin, 'sign_in' );
 		$this->loader->add_action( 'wp_ajax_delete_widget', $plugin_admin, 'delete_widget' );
 
 		// Settings link
-		$plugin = plugin_basename( plugin_dir_path( 'mailchimp-mailmunch.php' ) . 'mailchimp-mailmunch.php' );
-		$this->loader->add_filter( 'plugin_action_links_'.$plugin, $plugin_admin, 'settings_link');
+		$pluginBaseName = plugin_basename(__FILE__);
+		$exploded = explode('/', $pluginBaseName);
+		$pluginFilePath = $exploded[0]. '/mailchimp-mailmunch.php';
+		$this->loader->add_filter( 'plugin_action_links_'. $pluginFilePath, $plugin_admin, 'settings_link');
 
 	}
 
@@ -223,6 +222,9 @@ class Mailchimp_Mailmunch {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_filter( 'the_content', $plugin_public, 'add_post_containers' );
+
+		// Sidebar widget
+		$this->loader->add_action( 'widgets_init', $plugin_public, 'sidebar_widget' );
 
 	}
 

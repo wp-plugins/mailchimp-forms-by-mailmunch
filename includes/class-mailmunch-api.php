@@ -17,6 +17,10 @@
       $userToken = $this->getUserToken();
       if (empty($userToken)) {
         $userToken = $this->generateUserToken();
+        if( is_wp_error( $userToken ) ) {
+          return new WP_Error( 'broke', "Unable to connect to MailMunch. Please try again later." );
+        }
+        
         $this->setUserToken($userToken);
       }
     }
@@ -62,7 +66,7 @@
       $s = false;
       if (count($sites)) {
         foreach ($sites as $site) {
-          if ($site->id == $siteId) {
+          if (intval($site->id) == intval($siteId)) {
             $s = $site;
             break;
           }
@@ -166,6 +170,10 @@
       return false;
     }
 
+    function setSkipOnBoarding() {
+      update_option($this->getPrefix(). 'skip_onboarding', true);
+    }
+
     function skipOnBoarding() {
       $skipOnBoarding = get_option($this->getPrefix(). 'skip_onboarding');
       return $skipOnBoarding == true;
@@ -210,7 +218,7 @@
         delete_option($this->getPrefix(). 'guest_user');
         delete_option($this->getPrefix(). 'wordpress_instance_id');
 
-        update_option($this->getPrefix(). 'skip_onboarding', true);
+        $this->setSkipOnBoarding();
 
         return true;
       }
@@ -298,7 +306,7 @@
       }
 
       $newUser = json_decode($request['body']);
-      if ($newUser->site_id != $this->getSiteId()) {
+      if (intval($newUser->site_id) && $newUser->site_id != $this->getSiteId()) {
         $this->setSiteId($newUser->site_id);
       }
       return $newUser;
@@ -325,7 +333,7 @@
       }
 
       $newUser = json_decode($request['body']);
-      if ($newUser->site_id != $this->getSiteId()) {
+      if (intval($newUser->site_id) && $newUser->site_id != $this->getSiteId()) {
         $this->setSiteId($newUser->site_id);
       }
       return $newUser;
@@ -346,7 +354,8 @@
       $url = $this->base_url. $path;
 
       if (!$skipTokenAuth) {
-        $parseUrlQuery = parse_url($url)['query'];
+        $parsedUrl = parse_url($url);
+        $parseUrlQuery = isset($parsedUrl['query']) ? $parsedUrl['query'] : null;
         if (!empty($parseUrlQuery)) {
           $url .= '&token='. $this->getUserToken();
         }
