@@ -66,7 +66,7 @@
       $s = false;
       if (count($sites)) {
         foreach ($sites as $site) {
-          if ($site->id == $siteId) {
+          if (intval($site->id) == intval($siteId)) {
             $s = $site;
             break;
           }
