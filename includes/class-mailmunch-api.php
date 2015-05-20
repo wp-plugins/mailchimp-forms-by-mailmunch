@@ -170,6 +170,10 @@
       return false;
     }
 
+    function setSkipOnBoarding() {
+      update_option($this->getPrefix(). 'skip_onboarding', true);
+    }
+
     function skipOnBoarding() {
       $skipOnBoarding = get_option($this->getPrefix(). 'skip_onboarding');
       return $skipOnBoarding == true;
@@ -214,7 +218,7 @@
         delete_option($this->getPrefix(). 'guest_user');
         delete_option($this->getPrefix(). 'wordpress_instance_id');
 
-        update_option($this->getPrefix(). 'skip_onboarding', true);
+        $this->setSkipOnBoarding();
 
         return true;
       }

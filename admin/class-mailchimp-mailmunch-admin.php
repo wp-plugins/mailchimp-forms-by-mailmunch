@@ -159,7 +159,13 @@ class Mailchimp_Mailmunch_Admin {
 	 * @since    2.0.0
 	 */
 	public function getStep() {
-		if (isset($_GET['step'])) { $step = $_GET['step']; }
+		if (isset($_GET['step'])) {
+			$step = $_GET['step'];
+			if ($step == 'skip_onboarding') {
+				$this->mailmunch_api->setSkipOnBoarding();
+				$step = '';
+			}
+		}
 		elseif ($this->mailmunch_api->skipOnBoarding()) { $step = ''; }
 		else {
 			$step = 'connect';
