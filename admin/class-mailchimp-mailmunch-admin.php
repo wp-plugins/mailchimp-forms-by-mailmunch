@@ -64,7 +64,6 @@ class Mailchimp_Mailmunch_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->integration_name = $integration_name;		
 		$this->version = $version;
-		$this->mailmunch_api = new Mailmunch_Api();
 	}
 
 	/**
@@ -114,6 +113,7 @@ class Mailchimp_Mailmunch_Admin {
 	}
 
 	public function sign_up() {
+		$this->initiate_api();
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		echo json_encode($this->mailmunch_api->signUpUser($email, $password, $_POST['site_name'], $_POST['site_url']));
@@ -121,6 +121,7 @@ class Mailchimp_Mailmunch_Admin {
 	}
 
 	public function sign_in() {
+		$this->initiate_api();
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		echo json_encode($this->mailmunch_api->signInUser($email, $password));
@@ -128,6 +129,7 @@ class Mailchimp_Mailmunch_Admin {
 	}
 
 	public function delete_widget() {
+		$this->initiate_api();
 		echo json_encode($this->mailmunch_api->deleteWidget($_POST['widget_id']));
 		exit;
 	}
@@ -154,21 +156,18 @@ class Mailchimp_Mailmunch_Admin {
 	}
 
 	/**
-	 * Register sidebar widget
-	 *
-	 * @since    2.0.0
-	 */
-	public function sidebar_widget() {
-		register_widget( 'Mailchimp_Mailmunch_Sidebar_Widget' );
-	}
-
-	/**
 	 * Get current step
 	 *
 	 * @since    2.0.0
 	 */
 	public function getStep() {
-		if (isset($_GET['step'])) { $step = $_GET['step']; }
+		if (isset($_GET['step'])) {
+			$step = $_GET['step'];
+			if ($step == 'skip_onboarding') {
+				$this->mailmunch_api->setSkipOnBoarding();
+				$step = '';
+			}
+		}
 		elseif ($this->mailmunch_api->skipOnBoarding()) { $step = ''; }
 		else {
 			$step = 'connect';
@@ -180,12 +179,20 @@ class Mailchimp_Mailmunch_Admin {
 		return $step;
 	}
 
+	public function initiate_api() {
+		if (empty($this->mailmunch_api)) {
+			$this->mailmunch_api = new Mailmunch_Api();
+		}
+		return $this->mailmunch_api;
+	}
 	/**
 	 * Get Dashboard HTML
 	 *
 	 * @since    2.0.0
 	 */
 	public function get_dashboard_html() {
+
+		$this->initiate_api();
 
 		switch ($this->getStep()) {
 			case 'sign_out':
@@ -198,22 +205,22 @@ class Mailchimp_Mailmunch_Admin {
 			break;
 
 			case 'integrate':
-				if ($_POST['access_token']) {
+				if (isset($_POST['access_token'])) {
 					update_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token', $_POST['access_token']);
 				}
 
 				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/drewm_mailchimp.php';
-				$mailchimpApi = new \Drewm\MailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
+				$mailchimpApi = new DrewmMailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
 				$lists = $mailchimpApi->call('lists/list');
 				require_once(plugin_dir_path( __FILE__ ) . 'partials/mailchimp-mailmunch-integrate.php');
 			break;
 
 			default:
-				if ($_POST['list_id']) {
+				if (isset($_POST['list_id'])) {
 					update_option($this->mailmunch_api->getPrefix(). 'mailchimp_list_id', $_POST['list_id']);
 
 					require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/drewm_mailchimp.php';
-					$mailchimpApi = new \Drewm\MailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
+					$mailchimpApi = new DrewmMailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
 					$lists = $mailchimpApi->call('lists/list');
 					$listName = '';
 					if ($lists['total'] > 0) {

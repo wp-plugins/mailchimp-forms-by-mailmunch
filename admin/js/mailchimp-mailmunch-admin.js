@@ -32,17 +32,23 @@
 	$(function() {
 	 	$("#connect-mailchimp").click(function() {
 	 		var width = 500;
-	 		var height = 550;
+	 		var height = 600;
 	 		window.open($(this).attr("href"), "MailMunchIntegration", "top="+ (($(window).height()/2)-(height/2)) +", left="+ (($(window).width()/2)-(width/2)) +", width="+width+", height="+height);
 	 		return false;
 	 	});
 
 	 	window.addEventListener("message", function(event) {
-	 		if (typeof(event.data) != 'undefined' && event.data.access_token) {
+	 		if (typeof(event.data) != 'undefined') {
+                var access_token = '';
+                if (typeof(event.data) == 'string') {
+                    access_token = event.data;
+                } else {
+                    access_token = event.data.access_token;
+                }
 	 			$("#connect-mailchimp").hide();
 	 			$("#loader").show();
 	 			var form = $('#mailchimp-access-token-form');
-	 			form.find('input[name=access_token]').val(event.data.access_token);
+	 			form.find('input[name=access_token]').val(access_token);
 	 			form.submit();
 	 		}
 	 	}, false);

@@ -1,7 +1,4 @@
 <?php
-
-namespace Drewm;
-
 /**
  * Super-simple, minimum abstraction MailChimp API v2 wrapper
  * 
@@ -15,7 +12,7 @@ namespace Drewm;
  * @author Drew McLellan <drew.mclellan@gmail.com> 
  * @version 1.1.1
  */
-class MailChimp
+class DrewmMailChimp
 {
     private $api_key;
     private $api_endpoint = 'https://<dc>.api.mailchimp.com/2.0';
