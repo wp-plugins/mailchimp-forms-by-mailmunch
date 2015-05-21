@@ -64,7 +64,6 @@ class Mailchimp_Mailmunch_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->integration_name = $integration_name;		
 		$this->version = $version;
-		$this->mailmunch_api = new Mailmunch_Api();
 	}
 
 	/**
@@ -114,6 +113,7 @@ class Mailchimp_Mailmunch_Admin {
 	}
 
 	public function sign_up() {
+		$this->initiate_api();
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		echo json_encode($this->mailmunch_api->signUpUser($email, $password, $_POST['site_name'], $_POST['site_url']));
@@ -121,6 +121,7 @@ class Mailchimp_Mailmunch_Admin {
 	}
 
 	public function sign_in() {
+		$this->initiate_api();
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		echo json_encode($this->mailmunch_api->signInUser($email, $password));
@@ -128,6 +129,7 @@ class Mailchimp_Mailmunch_Admin {
 	}
 
 	public function delete_widget() {
+		$this->initiate_api();
 		echo json_encode($this->mailmunch_api->deleteWidget($_POST['widget_id']));
 		exit;
 	}
@@ -177,12 +179,20 @@ class Mailchimp_Mailmunch_Admin {
 		return $step;
 	}
 
+	public function initiate_api() {
+		if (empty($this->mailmunch_api)) {
+			$this->mailmunch_api = new Mailmunch_Api();
+		}
+		return $this->mailmunch_api;
+	}
 	/**
 	 * Get Dashboard HTML
 	 *
 	 * @since    2.0.0
 	 */
 	public function get_dashboard_html() {
+
+		$this->initiate_api();
 
 		switch ($this->getStep()) {
 			case 'sign_out':

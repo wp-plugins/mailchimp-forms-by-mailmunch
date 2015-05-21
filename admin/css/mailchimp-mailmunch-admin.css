@@ -63,6 +63,10 @@
   margin-bottom: 25px;
 }
 
+.integrate-step .inside-container .skip-link-container {
+  margin-top: 25px;
+}
+
 #connect-mailchimp {
   text-align: center;
   display: inline-block;

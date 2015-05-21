@@ -5,12 +5,11 @@
     protected $requestType = 'get';
     protected $mailmunch_prefix;
     protected $referral = 'mailchimp-wordpress-plugin';
-    protected $site = null;
 
     function __construct() {
       $this->mailmunch_prefix = MAILCHIMP_MAILMUNCH_PREFIX.'_';
       $this->ensureUser();
-      $this->site = $this->findOrCreateSite();
+      $this->findOrCreateSite();
     }
 
     function ensureUser() {
@@ -62,6 +61,8 @@
 
     function getSite($siteId=null) {
       if (empty($siteId)) $siteId = $this->getSiteId();
+      if (empty($siteId)) return false;
+
       $sites = $this->getSites();
       $s = false;
       if (count($sites)) {
@@ -96,10 +97,10 @@
     }
 
     function findOrCreateSite() {
-      $site = $this->getSite($this->getSiteId());
+      $site = $this->getSite();
       if (empty($site)) {
         $site = $this->createSite(get_bloginfo(), home_url());
-        $this->setSiteId($site->id);
+        if (!empty($site)) $this->setSiteId($site->id);
       }
       return $site;
     }
@@ -144,7 +145,6 @@
       }
 
       $site = json_decode($request['body']);
-      update_option($this->getPrefix(). 'site_id', $site->id);
       return $site;
     }
 
@@ -206,13 +206,13 @@
         $this->setUserToken($request->token);
 
         // Migrate Site ID
-        $old_data = unserialize(get_option($this->getPrefix(). "data"));
+        $old_data = $this->deep_unserialize(get_option($this->getPrefix(). "data"));
         if (isset($old_data["site_id"])) {
           $this->setSiteId($old_data["site_id"]);
+          delete_option($this->getPrefix(). 'data');
         }
 
         // Delete options for old site
-        delete_option($this->getPrefix(). 'data');
         delete_option($this->getPrefix(). 'user_email');
         delete_option($this->getPrefix(). 'user_password');
         delete_option($this->getPrefix(). 'guest_user');
@@ -224,6 +224,17 @@
       }
 
       return false;
+    }
+
+    function deep_unserialize($value, $retries=0) {
+      $retries++;
+      if ($retries > 3) return $value;
+
+      if (is_string($value)) {
+        $value = unserialize($value);
+        if (is_string($value)) $value = $this->deep_unserialize($value, $retries);
+      }
+      return $value;
     }
 
     function generateUserToken() {
