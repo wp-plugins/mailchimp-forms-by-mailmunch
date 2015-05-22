@@ -18,6 +18,7 @@ define( 'MAILCHIMP_MAILMUNCH_URL', "http://wordpress.mailmunch.co" );
 define( 'MAILCHIMP_MAILMUNCH_HOME_URL', "http://www.mailmunch.co" );
 define( 'MAILCHIMP_MAILMUNCH_SLUG', "mailchimp-mailmunch" );
 define( 'MAILCHIMP_MAILMUNCH_PREFIX', 'mc_mm' );
+define( 'MAILCHIMP_MAILMUNCH_VERSION', '2.0.7' );
 
 /**
  * The core plugin class.
