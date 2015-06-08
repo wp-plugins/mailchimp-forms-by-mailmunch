@@ -24,6 +24,14 @@
       }
     }
 
+    function getSetting($settingName) {
+      return get_option($this->getPrefix(). $settingName);
+    }
+
+    function setSetting($settingName, $value=null) {
+      return update_option($this->getPrefix(). $settingName, $value);
+    }
+
     function getUserToken() {
       return get_option($this->getPrefix(). 'user_token');
     }

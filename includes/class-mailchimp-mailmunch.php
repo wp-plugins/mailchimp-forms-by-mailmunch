@@ -18,7 +18,7 @@ define( 'MAILCHIMP_MAILMUNCH_URL', "http://wordpress.mailmunch.co" );
 define( 'MAILCHIMP_MAILMUNCH_HOME_URL', "http://www.mailmunch.co" );
 define( 'MAILCHIMP_MAILMUNCH_SLUG', "mailchimp-mailmunch" );
 define( 'MAILCHIMP_MAILMUNCH_PREFIX', 'mc_mm' );
-define( 'MAILCHIMP_MAILMUNCH_VERSION', '2.0.7' );
+define( 'MAILCHIMP_MAILMUNCH_VERSION', '2.0.8' );
 
 /**
  * The core plugin class.
@@ -194,6 +194,7 @@ class Mailchimp_Mailmunch {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'menu' );
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'activation_notice' );
 
 		// Ajax calls
 		$this->loader->add_action( 'wp_ajax_sign_up', $plugin_admin, 'sign_up' );
@@ -222,7 +223,10 @@ class Mailchimp_Mailmunch {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-		$this->loader->add_filter( 'the_content', $plugin_public, 'add_post_containers' );
+		$autoEmbed = get_option(MAILCHIMP_MAILMUNCH_PREFIX. '_auto_embed');
+		if (empty($autoEmbed) || $autoEmbed == 'yes') {
+			$this->loader->add_filter( 'the_content', $plugin_public, 'add_post_containers' );
+		}
 
 		// Sidebar widget
 		$this->loader->add_action( 'widgets_init', $plugin_public, 'sidebar_widget' );

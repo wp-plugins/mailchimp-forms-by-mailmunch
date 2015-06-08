@@ -142,6 +142,23 @@ class Mailchimp_Mailmunch_Admin {
 	public function menu() {
 		add_options_page( $this->integration_name, $this->integration_name, 'manage_options', MAILCHIMP_MAILMUNCH_SLUG, array($this, 'get_dashboard_html'));
 		add_menu_page( $this->integration_name, $this->integration_name, 'manage_options', MAILCHIMP_MAILMUNCH_SLUG, array($this, 'get_dashboard_html'), plugins_url( 'img/icon.png', __FILE__ ), 103.786);
+
+		add_submenu_page( MAILCHIMP_MAILMUNCH_SLUG, $this->integration_name, 'Forms', 'manage_options', MAILCHIMP_MAILMUNCH_SLUG, array($this, 'get_dashboard_html') );
+		add_submenu_page( MAILCHIMP_MAILMUNCH_SLUG, $this->integration_name. ' Settings', 'Settings', 'manage_options', MAILCHIMP_MAILMUNCH_SLUG. '-settings', array($this, 'settings_page') );
+	}
+
+	/**
+	 * Activation notice for admin area
+	 *
+	 * @since    2.0.8
+	 */
+	function activation_notice() {
+		$current_screen = get_current_screen();
+		$siteId = get_option(MAILCHIMP_MAILMUNCH_PREFIX. '_'. 'site_id');
+
+		if (empty($siteId) && strpos($current_screen->id, MAILCHIMP_MAILMUNCH_SLUG) == false)  {
+			echo '<div class="updated"><p>'.$this->plugin_name.' is activated. <a href="admin.php?page='.MAILCHIMP_MAILMUNCH_SLUG.'">Click here</a> to create your first form.</p></div>';
+		}
 	}
 
 	/**
@@ -150,7 +167,7 @@ class Mailchimp_Mailmunch_Admin {
 	 * @since    2.0.0
 	 */
 	public function settings_link($links) {
-	  $settings_link = '<a href="options-general.php?page='.MAILCHIMP_MAILMUNCH_SLUG.'">Settings</a>';
+	  $settings_link = '<a href="admin.php?page='.MAILCHIMP_MAILMUNCH_SLUG.'">Settings</a>';
 	  array_unshift($links, $settings_link);
 	  return $links;
 	}
@@ -185,6 +202,20 @@ class Mailchimp_Mailmunch_Admin {
 		}
 		return $this->mailmunch_api;
 	}
+
+	/**
+	 * Settings Page
+	 *
+	 * @since    2.0.8
+	 */
+	public function settings_page() {
+		$this->initiate_api();
+		if ($_POST) {
+			$this->mailmunch_api->setSetting('auto_embed', $_POST['auto_embed']);
+		}
+		require_once(plugin_dir_path(__FILE__) . 'partials/mailchimp-mailmunch-settings.php');
+	}
+
 	/**
 	 * Get Dashboard HTML
 	 *

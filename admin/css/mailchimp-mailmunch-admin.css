@@ -45,6 +45,16 @@
   text-align: center;
 }
 
+.settings-table .inside-container p {
+  font-size: 11px;
+  padding: 0px 12px;
+  color: #999;
+}
+
+.settings-table .button {
+  margin: 0px 12px 12px;
+}
+
 .mailchimp-status {
   margin-bottom: 15px;
 }
