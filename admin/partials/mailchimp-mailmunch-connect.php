@@ -31,6 +31,10 @@
                 <img src="<?php echo plugins_url( 'img/mailchimp_logo.png', dirname(__FILE__) ) ?>" />
                 <span class="button button-primary">Connect to MailChimp</span>
               </a>
+
+              <div class="skip-link-container">
+                <a id="skip-onboarding" href="<?php echo add_query_arg( array('step' => 'skip_onboarding') ); ?>">skip this and create a form</a>
+              </div>
             </td>
           </tr>
         </tbody>
