@@ -12,7 +12,7 @@ The #1 MailChimp plugin to get more email subscribers. Easily add MailChimp sign
 
 == Description ==
 
-> MailChimp Forms by MailMunch allows you to painlessly add MailChimp sign up forms to your WordPress site. The MailChimp form captures the lead and sends it to specific MailChimp lists automatically. You can set it to no op-in, opt-in, or double opt-in. You can add MailChimp forms to posts, pages or sidebar, and also open it as a popup or top bar. Simply sign up and connect your MailChimp account into the plugin admin settings and it will pull in all your MailChimp lists. From there you can choose the lists you want to make forms for.
+> MailChimp Forms by MailMunch allows you to painlessly add MailChimp sign up forms to your WordPress site. The MailChimp form captures the lead and sends it to specific MailChimp lists automatically. You can set it to no op-in, opt-in, or double opt-in. You can add MailChimp forms to posts, pages or sidebar, and also open it as a popup or top bar. Simply sign up and connect your MailChimp account into the plugin admin settings and it will pull in all your MailChimp lists. From there you can choose the lists you want to make MailChimp forms for.
 
 What is [MailChimp](http://www.mailchimp.com/)? MailChimp is one of the best email marketing tools. Signup up for a [FREE Trial Account](http://www.mailchimp.com/signup/) and see for yourself!
 
@@ -51,7 +51,7 @@ This section describes how to install the MailChimp plugin and get started using
 
 = Version 2.8+ =
 1. Unzip our archive and upload the entire `mailchimp-mailmunch` directory to your `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
+2. Activate the MailChimp plugin through the 'Plugins' menu in WordPress
 3. Look for "MailChimp" in the WordPress admin menu and click it
 4. Sign up and create your first MailChimp optin form
 5. Choose the MailChimp optin form type: Popover, Embedded or Top Bar
@@ -116,11 +116,14 @@ Why people use MailChimp
 2. The second step is configuring your MailChimp form for things like when to show it, how often to show it, and where to go after they subscribe
 3. This is the integration step where you can connect your MailChimp account
 4. This is the final step where you can publish your MailChimp form to all or selected posts, categories or pages
-5. And finally, we have the MailChimp form working live on your blog - increasing your MailChimp subscribers :)
-6. A MailChimp connected form example from a user site
-7. Another MailChimp connected example from a user site
+5. And we have the MailChimp form working live on your blog - increasing your MailChimp subscribers :)
+6. A MailChimp connected form example
+7. Another MailChimp connected example
 
 == Changelog ==
+
+= 2.0.0 =
+* Brand New: Faster and more reliable MailChimp forms
 
 = 1.0.9 =
 * Faster MailChimp forms
