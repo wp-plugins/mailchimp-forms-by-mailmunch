@@ -95,9 +95,42 @@ Absolutely not. MailChimp by MailMunch is designed with high performance and sca
 = How many more emails will list builder help me get? =
 Most people see a 100% to 500% growth in their MailChimp email subscribers.
 
+= How to display a MailChimp form in my template files? = 
+You can display shortcodes using `echo do_shortcode([SHORTCODE])`.
+
+Example: 
+`<?php echo do_shortcode( '[mailmunch-form id=79669]' ) ?>`
+
+= Does this plugin work with MailChimp groups? =
+Yes. You can choose which MailChimp group to add subscribers to.
+
+= Which MailChimp form type is right for me? =
+We have a few great MailChimp form options:
+
+1. Popup MailChimp form: Most effective way to grow your MailChimp list.
+2. Embedded MailChimp form: Embed MailChimp forms any where in posts or pages.
+3. Sidebar MailChimp form: If you have a sidebar, add a MailChimp sidebar widget there.
+4. Top Bar MailChimp form: Add a MailChimp form as a top or bottom bar.
+5. Scroll Box MailChimp form: Politely slides when a user scrolls your page.
+
+= How to add MailChimp forms to my site? =
+You can add MailChimp opt-in forms to your site by going to MailChimp Forms by MailMunch. Choose a MailChimp form type, then choose a layout and modify the text, colors and design using the point & click editor. Now, connect to the MailChimp API and integrate. You are ready to publish your MailChimp form. Go MailChimp!
+
+= How to add a MailChimp sidebar widget? =
+To create your MailChimp Sidebar widget, go to your Appearance > Widgets. Then, drag MailChimp Forms widget to your sidebar and expand it and choose or create your MailChimp form.
+
+= Do your MailChimp forms work on mobile devices? =
+Yes. Our MailChimp popups, MailChimp embed forms, MailChimp sidebar widgets and MailChimp top bars are fully designed to work on mobile.
+
+= How does the MailChimp form analytics feature work? =
+MailChimp provides complete analytics on your MailChimp forms and MailChimp subscribers.
+
+= How is this MailChimp plugin better than other MailChimp plugins? =
+This MailChimp plugin is the easiest, fastest and best form builder. Try other MailChimp plugins and then try ours.
+
 == Other Notes ==
 
-Our MailChimp email newsletter list builder helps WordPress users build their audiences online.
+Our MailChimp email newsletter list builder helps WordPress users build their audiences on MailChimp.
 
 Why people use MailChimp
 
@@ -109,6 +142,17 @@ Why people use MailChimp
 * MailChimp has better list management
 * MailChimp has great error messaging
 * MailChimp has interest groups/segments
+* MailChimp has marketing automation
+* MailChimp has subscriber profiles
+* MailChimp has send time optimization
+* MailChimp API is solid
+
+= About MailChimp =
+
+[MailChimp](http://mailchimp.com/) is currently used by more than seven million businesses and people throughout the world. The features and integrations of MailChimp allow you to send out automated messages, marketing emails, as well as different targeted campaigns. MailChimp has been in business since the year 2001. Since that time MailChimp has grown and now there are more than 500 million emails sent through MailChimp each day. 
+MailChimp is a simple email marketing software. So many MailChimp users cannot be wrong.  If you are creating an email newsletter, MailChimp can help. MailChimp is a platform to create, design, and publish your newsletters. 
+
+With MailChimp you can build a list of email subscribers. MailChimp allows you to customize templates. MailChimp is the best email marketing platform. The pricing is affordable, making MailChimp perfect.
 
 == Screenshots ==
 
@@ -122,14 +166,17 @@ Why people use MailChimp
 
 == Changelog ==
 
-= 2.0.0 =
+= MailChimp Forms 2.0.8 =
+* More MailChimp form themes
+
+= MailChimp Forms 2.0.0 =
 * Brand New: Faster and more reliable MailChimp forms
 
-= 1.0.9 =
+= MailChimp Forms 1.0.9 =
 * Faster MailChimp forms
 
-= 1.0.5 =
+= MailChimp Forms 1.0.5 =
 * More MailChimp features
 
-= 1.0.1 =
+= MailChimp Forms 1.0.1 =
 * The first version of MailChimp Forms WordPress plugin by MailMunch
