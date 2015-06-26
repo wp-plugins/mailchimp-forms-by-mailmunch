@@ -108,6 +108,14 @@ class Mailchimp_Mailmunch_Public {
 		 * class.
 		 */
 
+	}
+
+	/**
+	 * Appends code for wp_head in the public-facing side of the site.
+	 *
+	 * @since    2.0.9
+	 */
+	public function append_head() {
 		$siteID = get_option(MAILCHIMP_MAILMUNCH_PREFIX. '_site_id');
 
 		if (is_single() || is_page()) {

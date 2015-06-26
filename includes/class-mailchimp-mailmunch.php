@@ -18,7 +18,7 @@ define( 'MAILCHIMP_MAILMUNCH_URL', "http://wordpress.mailmunch.co" );
 define( 'MAILCHIMP_MAILMUNCH_HOME_URL', "http://app.mailmunch.co" );
 define( 'MAILCHIMP_MAILMUNCH_SLUG', "mailchimp-mailmunch" );
 define( 'MAILCHIMP_MAILMUNCH_PREFIX', 'mc_mm' );
-define( 'MAILCHIMP_MAILMUNCH_VERSION', '2.0.8' );
+define( 'MAILCHIMP_MAILMUNCH_VERSION', '2.0.9' );
 
 /**
  * The core plugin class.
@@ -95,7 +95,7 @@ class Mailchimp_Mailmunch {
 
 		$this->plugin_name = 'MailChimp Forms by MailMunch';
 		$this->integration_name = 'MailChimp';
-		$this->version = '2.0.1';
+		$this->version = '2.0.9';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -222,6 +222,7 @@ class Mailchimp_Mailmunch {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'wp_head', $plugin_public, 'append_head' );
 
 		$autoEmbed = get_option(MAILCHIMP_MAILMUNCH_PREFIX. '_auto_embed');
 		if (empty($autoEmbed) || $autoEmbed == 'yes') {
