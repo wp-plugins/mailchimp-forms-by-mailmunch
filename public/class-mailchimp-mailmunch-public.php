@@ -52,6 +52,20 @@ class Mailchimp_Mailmunch_Public {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
+		add_shortcode('mailmunch-form', array($this, 'shortcode_form'));
+	}
+
+	public function shortcode_form($atts) {
+		return "<div class='mailmunch-forms-short-code mailmunch-forms-widget-".$atts['id']."' style='display: none !important;'></div>";
+	}
+
+	/**
+	 * Register sidebar widget
+	 *
+	 * @since    2.0.0
+	 */
+	public function sidebar_widget() {
+		register_widget( 'Mailchimp_Mailmunch_Sidebar_Widget' );
 	}
 
 	/**
@@ -94,6 +108,14 @@ class Mailchimp_Mailmunch_Public {
 		 * class.
 		 */
 
+	}
+
+	/**
+	 * Appends code for wp_head in the public-facing side of the site.
+	 *
+	 * @since    2.0.9
+	 */
+	public function append_head() {
 		$siteID = get_option(MAILCHIMP_MAILMUNCH_PREFIX. '_site_id');
 
 		if (is_single() || is_page()) {
