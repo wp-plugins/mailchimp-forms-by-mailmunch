@@ -198,7 +198,7 @@ class Mailchimp_Mailmunch_Admin {
 
 	public function initiate_api() {
 		if (empty($this->mailmunch_api)) {
-			$this->mailmunch_api = new Mailmunch_Api();
+			$this->mailmunch_api = new Mailchimp_Mailmunch_Api();
 		}
 		return $this->mailmunch_api;
 	}

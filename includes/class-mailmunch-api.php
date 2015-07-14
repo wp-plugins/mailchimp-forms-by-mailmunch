@@ -1,5 +1,5 @@
 <?php
-  class Mailmunch_Api {
+  class Mailchimp_Mailmunch_Api {
     protected $base_url = MAILCHIMP_MAILMUNCH_URL;
     protected $headers = array('Accept' => 'application/json');
     protected $requestType = 'get';
