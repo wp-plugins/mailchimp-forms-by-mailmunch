@@ -54,7 +54,7 @@ class Mailchimp_Mailmunch_Sidebar_Widget extends WP_Widget {
       $form_id = $instance[ 'form_id' ];
     }
 
-    $mm = new Mailmunch_Api();
+    $mm = new Mailchimp_Mailmunch_Api();
     $result = $mm->widgets("Sidebar");
     if ( !is_wp_error( $result ) ) {
       $widgets = json_decode($result['body']);
