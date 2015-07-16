@@ -166,6 +166,17 @@ With MailChimp you can build a list of email subscribers. MailChimp allows you t
 
 == Changelog ==
 
+= MailChimp Forms 2.1.1 =
+* Improved MailChimp Widget
+
+= MailChimp Forms 2.1.0 =
+* Refactored MailChimp Popup
+* Improved MailChimp Form targeting
+
+= MailChimp Forms 2.0.9 = 
+* Fixed MailChimp integration bug
+* Fixed MailChimp lists not found bug
+
 = MailChimp Forms 2.0.8 =
 * More MailChimp form themes
 
