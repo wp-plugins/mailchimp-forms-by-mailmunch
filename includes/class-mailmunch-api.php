@@ -94,50 +94,30 @@
       return json_decode($request['body']);
     }
 
-    function createListAndIntegration($accessToken, $listName, $externalListId) {
-      $list = $this->createList($listName);
-      if ($list) {
-        $site = $this->getSite();
-        if (!empty($site)) {
-          $integration = $this->createIntegration($site->id, $list->id, $accessToken, $externalListId );
-          return $integration;
-        }
-      }
-      return false;
-    }
-
     function findOrCreateSite() {
       $site = $this->getSite();
       if (empty($site)) {
-        $site = $this->createSite(get_bloginfo(), home_url());
+        $siteName = get_bloginfo();
+        $decodedSiteName = html_entity_decode($siteName, ENT_QUOTES);
+        $site = $this->createSite($decodedSiteName, home_url());
         if (!empty($site)) $this->setSiteId($site->id);
       }
       return $site;
     }
 
-    function createIntegration($siteId, $listId, $accessToken, $externalListId) {
-      $this->requestType = 'post';
-      $response = $this->ping('/wordpress/integrations/mailchimp', array(
-        'site_id' => $siteId,
-        'list_id' => $listId,
-        'access_token' => $accessToken,
-        'active_list_id' => $externalListId
-      ));
-      $site = json_decode($response['body']);
-      return $site;
-    }
-
-    function createList($listName, $siteId=null) {
-      if (empty($listName)) $listName = 'General';
-      if (empty($siteId)) { $siteId = $this->getSiteId(); }
-      $this->requestType = 'post';
-      $response = $this->ping('/sites/'. $siteId. '/lists', array(
-        'list' => array(
-          'name' => $listName,
-          )
-      ));
-      $list = json_decode($response['body']);
-      return $list;
+    function createIntegration($accessToken, $externalListId) {
+      $siteId = $this->getSiteId();
+      if (!empty($siteId)) {
+        $this->requestType = 'post';
+        $response = $this->ping('/wordpress/integrations/mailchimp', array(
+          'site_id' => $siteId,
+          'access_token' => $accessToken,
+          'active_list_id' => $externalListId
+        ));
+        $integration = json_decode($response['body']);
+        return $integration;
+      }
+      return false;
     }
 
     function createSite($siteName, $domain) {

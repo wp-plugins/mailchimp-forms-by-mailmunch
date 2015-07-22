@@ -249,19 +249,9 @@ class Mailchimp_Mailmunch_Admin {
 			default:
 				if (isset($_POST['list_id'])) {
 					update_option($this->mailmunch_api->getPrefix(). 'mailchimp_list_id', $_POST['list_id']);
-
-					require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/drewm_mailchimp.php';
-					$mailchimpApi = new DrewmMailChimp(get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token'));
-					$lists = $mailchimpApi->call('lists/list');
-					$listName = '';
-					if ($lists['total'] > 0) {
-						foreach ($lists['data'] as $list) {
-							if ($list['id'] == $_POST['list_id'] ) { $listName = $list['name']; }
-						}
-					}
 					$accessToken = get_option($this->mailmunch_api->getPrefix(). 'mailchimp_access_token');
 
-					$this->mailmunch_api->createListAndIntegration($accessToken, $listName, $_POST['list_id']);
+					$this->mailmunch_api->createIntegration($accessToken, $_POST['list_id']);
 				}
 				require_once(plugin_dir_path( __FILE__ ) . 'partials/mailchimp-mailmunch-admin-display.php');
 		}
