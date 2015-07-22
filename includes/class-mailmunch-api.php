@@ -99,6 +99,7 @@
       if (empty($site)) {
         $siteName = get_bloginfo();
         $decodedSiteName = html_entity_decode($siteName, ENT_QUOTES);
+        $decodedSiteName = stripslashes($decodedSiteName);
         $site = $this->createSite($decodedSiteName, home_url());
         if (!empty($site)) $this->setSiteId($site->id);
       }
