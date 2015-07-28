@@ -35,7 +35,7 @@
                     <option value="<?php echo $list['id']; ?>"><?php echo $list['name']; ?></option>
                 <?php } ?>
                   </select>
-                  <input type="submit" name="action" value="Choost List" class="button button-primary" />
+                  <input type="submit" name="action" value="Choose List" class="button button-primary" />
                 </form>
                 <?php } else { ?>
                 <img src="<?php echo plugins_url( 'img/warning.png', dirname(__FILE__) ) ?>" />
