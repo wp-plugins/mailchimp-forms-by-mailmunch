@@ -12,13 +12,13 @@ The #1 MailChimp plugin to get more email subscribers. Easily add MailChimp sign
 
 == Description ==
 
-> MailChimp Forms by MailMunch allows you to painlessly add MailChimp sign up forms to your WordPress site. The MailChimp form captures the lead and sends it to specific MailChimp lists automatically. You can set it to no op-in, opt-in, or double opt-in. You can add MailChimp forms to posts, pages or sidebar, and also open it as a popup or top bar. Simply sign up and connect your MailChimp account into the plugin admin settings and it will pull in all your MailChimp lists. From there you can choose the lists you want to make MailChimp forms for.
+> MailChimp Forms by MailMunch allows you to painlessly add MailChimp sign up forms to your WordPress site. The MailChimp form captures the lead and sends it to specific MailChimp lists automatically. You can set it to no op-in, opt-in, or double opt-in. You can add MailChimp forms to posts, pages or sidebar, and also open it as a popup or top bar. Simply sign up and connect your MailChimp account into the plugin admin settings and it will pull in all your MailChimp lists. From there you can choose the MailChimp lists you want to make MailChimp forms for.
 
 What is [MailChimp](http://www.mailchimp.com/)? MailChimp is one of the best email marketing tools. Signup up for a [FREE Trial Account](http://www.mailchimp.com/signup/) and see for yourself!
 
 [vimeo http://vimeo.com/117103275]
 
-Our improved signup plugin for MailChimp will proactively sign-up new subscribers to your MailChimp newsletter list. Our forms offer the same basic features that MailChimp's official plugin, but also much more. In addition to the form, analytics will help you track the number of form views and subscriptions.
+Our improved signup plugin for MailChimp will proactively sign-up new subscribers to your MailChimp newsletter list. Our MailChimp forms offer the same basic features that MailChimp's official plugin, but also much more. In addition to the form, analytics will help you track the number of form views and subscriptions.
 
 = Sign-Up Forms =
 Easily create sign-up forms for your MailChimp list and display it as a popup, embedded widget or a top bar.
@@ -35,8 +35,6 @@ Easily create sign-up forms for your MailChimp list and display it as a popup, e
 * Add MailChimp forms to posts, pages, or categories
 * Set forms to single or double opt-in for MailChimp
 * Send MailChimp welcome email
-* Customize the success message and submit button text
-* Redirect users to a page on submission
 * Un-subscribe users from MailChimp lists
 * View subscriber MailChimp profiles
 * View individual MailChimp form subscriber count
