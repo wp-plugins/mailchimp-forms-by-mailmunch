@@ -3,7 +3,7 @@ Contributors: mailmunch
 Tags: mailchimp,mailchimp form,mailchimp newsletter,mailchimp plugin,newsletter,newsletter form, optin form, form, mailchimp signup, mailchimp signup forms, signup form, mailchimp widget, email form, leads, mailchimp subscribe
 
 Requires at least: 3.0.1
-Tested up to: 4.3
+Tested up to: 4.3.1
 Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -68,7 +68,7 @@ If you are using Wordpress v3.0 or higher, you can use the short-code given duri
 To learn more, just check out: [MailChimp](http://mailchimp.com/features/all/)
 
 = Do I need to have a MailChimp Account? =
-Yes, you can register on MailChimp at [MailChimp](https://mailchimp.com/sign up/ "MailChimp Signup").
+Yes, you can register on MailChimp at [MailChimp](https://login.mailchimp.com/signup). MailChimp has a free plan.
 
 = Do I need to have lists already set up in MailChimp? =
 Yes, you have to have at least 1 list set up in MailChimp. 
@@ -147,8 +147,7 @@ Why people use MailChimp
 
 = About MailChimp =
 
-[MailChimp](http://mailchimp.com/) is currently used by more than seven million businesses and people throughout the world. The features and integrations of MailChimp allow you to send out automated messages, marketing emails, as well as different targeted campaigns. MailChimp has been in business since the year 2001. Since that time MailChimp has grown and now there are more than 500 million emails sent through MailChimp each day. 
-MailChimp is a simple email marketing software. So many MailChimp users cannot be wrong.  If you are creating an email newsletter, MailChimp can help. MailChimp is a platform to create, design, and publish your newsletters. 
+[MailChimp](http://mailchimp.com/) is currently used by more than seven million businesses and people throughout the world. The features and integrations of MailChimp allow you to send out automated messages, marketing emails, as well as different targeted campaigns. MailChimp has been in business since the year 2001. Since that time MailChimp has grown and now there are more than 500 million emails sent through MailChimp each day. MailChimp is a simple email marketing software. So many MailChimp users cannot be wrong.  If you are creating an email newsletter, MailChimp can help. MailChimp is a platform to create, design, and publish your newsletters. 
 
 With MailChimp you can build a list of email subscribers. MailChimp allows you to customize templates. MailChimp is the best email marketing platform. The pricing is affordable, making MailChimp perfect.
 
@@ -181,6 +180,9 @@ With MailChimp you can build a list of email subscribers. MailChimp allows you t
 = MailChimp Forms 2.0.8 =
 * More MailChimp form themes
 
+= MailChimp Forms 2.0.7 =
+* Fixed MailChimp API wrapper class file
+
 = MailChimp Forms 2.0.6 =
 * MailChimp API update
 
@@ -210,3 +212,102 @@ With MailChimp you can build a list of email subscribers. MailChimp allows you t
 
 = MailChimp Forms 1.0.1 =
 * The first version of MailChimp Forms WordPress plugin by MailMunch
+
+= MailChimp Milestone (2014-06-03) =
+* 10 billion emails per month
+
+= MailChimp Mobile (2013-04-29) =
+* Responsive MailChimp
+
+= MailChimp Team Features (2013-04-29) =
+* Collaboration features for MailChimp campaigns
+
+= MailChimp Multi-User (2013-02-05) =
+* MailChimp v8: Multi-user accounts
+* MailChimp user permissions
+
+= MailChimp v7.9 (2013-01-07) =
+* New MailChimp Campaign features
+* Easily find MailChimp subscribers
+* MailChimp form language tags
+* MailChimp advanced filters
+
+= MailChimp Subscribers (2012-11-05) =
+* Faster MailChimp subscriber search
+
+= MailChimp Editor (2012-11-02) =
+* New Mailchimp Editor with drag and drop
+* MailChimp Newsletter designs
+
+= New MailChimp (2012-04-26) =
+* MailChimp 7.1 rolling out
+
+= MailChimp Integrations (2011-05-05) =
+* MailChimp Integrations directory
+
+= MailChimp Autoresponders (2012-10-26) =
+* MailChimp autoresponder triggers
+* MailChimp autoresponder kick off
+* MailChimp instant delivery
+* MailChimp scheduling
+
+= MailChimp Autoresponders (2012-07-24) =
+* MailChimp v7.4 bug squash
+
+= MailChimp API 1.3.0 (2010-11-15) =
+* MailChimp API v1.3.0 released
+* MailChimp API v1.1.x deprecated
+* MailChimp API v1.2.x frozen
+* Added List Activity API
+
+= MailChimp API 1.2.7 (2010-07-13) =
+* MailChimp API v1.2.7 released
+
+= MailChimp API 1.2.6 (2010-05-06) =
+* MailChimp API v1.2.6 released
+* Added List Interests API
+
+= MailChimp API 1.2.5 (2010-02-01) =
+* MailChimp API v1.2.5 released
+* listsForEmail() and campaignGeoOpens() APIs
+
+= MailChimp API 1.2.4 (2009-11-24) =
+* MailChimp API v1.2.4 released
+
+= MailChimp API 1.2.3 (2009-10-26) =
+* MailChimp API v1.2.3 released
+* Campaign reports API added
+
+= MailChimp API 1.2.2 (2009-08-17) =
+* MailChimp API v1.2.2 released
+* Added account details API
+
+= MailChimp API 1.2.1 (2009-06-08) =
+* MailChimp API v1.2.1 released
+* Added webhooks to list methods
+
+= MailChimp API 1.2.0 (2009-03-29) =
+* MailChimp API v1.2.0 released
+* update_existing parameter added
+
+= MailChimp API 1.1.2 (2008-11-21) =
+* MailChimp API v1.1.2 released
+
+= MailChimp API 1.1.1 (2008-10-10) =
+* MailChimp API v1.1.1 released
+
+= MailChimp API 1.1.0 (2008-08-08) =
+* MailChimp API v1.1.0 release
+* Security fixes and new additions
+
+= MailChimp API 1.0 Frozen (2008-06-20) =
+* MailChimp API v1.0 frozen
+* MailChimp API v1.1 work started
+
+= MailChimp API 1.0.1 (2008-05-19) =
+* MailChimp API v1.0.1 released
+* campaignCreate() and listMembers() added
+
+= MailChimp API 1.0 (2007-11-14) =
+* MailChimp API v1.0 released
+* lists() and campaigns() added
