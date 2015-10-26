@@ -213,6 +213,9 @@ With MailChimp you can build a list of email subscribers. MailChimp allows you t
 = MailChimp Forms 1.0.1 =
 * The first version of MailChimp Forms WordPress plugin by MailMunch
 
+= MailChimp Playground (2015-10-22) =
+* MailChimp Forms API playground
+
 = MailChimp Milestone (2014-06-03) =
 * 10 billion emails per month
 
