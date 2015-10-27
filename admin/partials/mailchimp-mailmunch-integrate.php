@@ -8,7 +8,7 @@
         MailChimp Forms
       </h2>
 
-      <table class="wp-list-table widefat fixed posts integration-steps">
+      <table class="wp-list-table widefat fixed posts integration-steps integrate-step">
         <thead>
           <tr>
             <th>
@@ -28,11 +28,6 @@
             <td colspan="3">
               <div class="inside-container">
                 <?php if ($lists['total'] > 0) { ?>
-                <div class="mailchimp-status">
-                  <img src="<?php echo plugins_url( 'img/check.png', dirname(__FILE__) ) ?>" />
-                  <div>Connected to MailChimp</div>
-                </div>
-
                 <p>Choose a list to save your subscribers in:</p>
                 <form action="<?php echo add_query_arg( array('step' => 'final') ); ?>" method="POST">
                   <select name="list_id">
@@ -40,12 +35,16 @@
                     <option value="<?php echo $list['id']; ?>"><?php echo $list['name']; ?></option>
                 <?php } ?>
                   </select>
-                  <input type="submit" name="action" value="Choost List" class="button button-primary" />
+                  <input type="submit" name="action" value="Choose List" class="button button-primary" />
                 </form>
                 <?php } else { ?>
                 <img src="<?php echo plugins_url( 'img/warning.png', dirname(__FILE__) ) ?>" />
                 <div class="warning">You do not have a list on MailChimp. Please create one and refresh this page.</div>
                 <?php } ?>
+
+                <div class="skip-link-container">
+                  <a id="skip-onboarding" href="<?php echo add_query_arg( array('step' => 'skip_onboarding') ); ?>">skip this and create a form</a>
+                </div>
               </div>
             </td>
           </tr>
