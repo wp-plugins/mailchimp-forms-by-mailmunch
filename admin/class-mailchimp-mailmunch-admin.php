@@ -148,16 +148,15 @@ class Mailchimp_Mailmunch_Admin {
 	}
 
 	/**
-	 * Activation notice for admin area
+	 * Activation redirect for admin area
 	 *
-	 * @since    2.0.8
+	 * @since    2.1.3
 	 */
-	function activation_notice() {
-		$current_screen = get_current_screen();
-		$siteId = get_option(MAILCHIMP_MAILMUNCH_PREFIX. '_'. 'site_id');
-
-		if (empty($siteId) && strpos($current_screen->id, MAILCHIMP_MAILMUNCH_SLUG) == false)  {
-			echo '<div class="updated"><p>'.$this->plugin_name.' is activated. <a href="admin.php?page='.MAILCHIMP_MAILMUNCH_SLUG.'">Click here</a> to create your first form.</p></div>';
+	function activation_redirect() {
+		if (get_option(MAILCHIMP_MAILMUNCH_PREFIX. '_activation_redirect', 'true') == 'true') {
+			update_option(MAILCHIMP_MAILMUNCH_PREFIX. '_activation_redirect', 'false');
+			wp_redirect(esc_url(admin_url('admin.php?page='. MAILCHIMP_MAILMUNCH_SLUG)));
+			exit();
 		}
 	}
 
