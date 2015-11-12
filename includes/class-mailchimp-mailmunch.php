@@ -18,7 +18,8 @@ define( 'MAILCHIMP_MAILMUNCH_URL', "http://wordpress.mailmunch.co" );
 define( 'MAILCHIMP_MAILMUNCH_HOME_URL', "http://app.mailmunch.co" );
 define( 'MAILCHIMP_MAILMUNCH_SLUG', "mailchimp-mailmunch" );
 define( 'MAILCHIMP_MAILMUNCH_PREFIX', 'mc_mm' );
-define( 'MAILCHIMP_MAILMUNCH_VERSION', '2.1.3' );
+define( 'MAILCHIMP_MAILMUNCH_PLUGIN_DIRECTORY', 'mailchimp-forms-by-mailmunch' );
+define( 'MAILCHIMP_MAILMUNCH_VERSION', '2.1.4' );
 
 /**
  * The core plugin class.
@@ -189,12 +190,17 @@ class Mailchimp_Mailmunch {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Mailchimp_Mailmunch_Admin( $this->get_plugin_name(), $this->get_intgration_name(), $this->get_version() );
+		$plugin_admin = new Mailchimp_Mailmunch_Admin( $this->get_plugin_name(), $this->get_integration_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'menu' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'activation_redirect' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'check_installation_date' );
+
+		// Review Notice
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'dismiss_review_notice' );
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'review_us_notice' );
 
 		// Ajax calls
 		$this->loader->add_action( 'wp_ajax_sign_up', $plugin_admin, 'sign_up' );
@@ -261,7 +267,7 @@ class Mailchimp_Mailmunch {
 	 * @since     2.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_intgration_name() {
+	public function get_integration_name() {
 		return $this->integration_name;
 	}
 

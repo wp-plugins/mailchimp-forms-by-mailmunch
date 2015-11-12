@@ -152,11 +152,73 @@ class Mailchimp_Mailmunch_Admin {
 	 *
 	 * @since    2.1.3
 	 */
-	function activation_redirect() {
+	public function activation_redirect() {
 		if (get_option(MAILCHIMP_MAILMUNCH_PREFIX. '_activation_redirect', 'true') == 'true') {
 			update_option(MAILCHIMP_MAILMUNCH_PREFIX. '_activation_redirect', 'false');
 			wp_redirect(esc_url(admin_url('admin.php?page='. MAILCHIMP_MAILMUNCH_SLUG)));
 			exit();
+		}
+	}
+
+	/**
+	 * Check and store installation/activation date
+	 *
+	 * @since    2.1.4
+	 */
+	public function check_installation_date() {
+		$activation_date = get_option( MAILCHIMP_MAILMUNCH_PREFIX. '_activation_date' );
+		if (!$activation_date) {
+			add_option( MAILCHIMP_MAILMUNCH_PREFIX. '_activation_date', strtotime( "now" ) );
+		}
+	}
+
+	/**
+	 * Review notice after two weeks of usage
+	 *
+	 * @since    2.1.4
+	 */
+	public function review_us_notice() {
+		$show_notice = true;
+		$past_date = strtotime( '-14 days' );
+		$activation_date = get_option( MAILCHIMP_MAILMUNCH_PREFIX. '_activation_date' );
+
+		$notice_dismissed = get_option( MAILCHIMP_MAILMUNCH_PREFIX. '_dismiss_review_notice' );
+		if ($notice_dismissed == 'true') {
+			$show_notice = false;
+		} elseif (!in_array(get_current_screen()->base , array( 'dashboard' , 'post' , 'edit' )) && strpos(get_current_screen()->base , MAILCHIMP_MAILMUNCH_SLUG) == false) {
+			$show_notice = false;
+		} elseif (!current_user_can( 'install_plugins' )) {
+			$show_notice = false;
+		} elseif ( !$activation_date || $past_date < $activation_date ) {
+			$show_notice = false;
+		}
+
+		if ($show_notice) {
+			$review_url = 'https://wordpress.org/support/view/plugin-reviews/'. MAILCHIMP_MAILMUNCH_PLUGIN_DIRECTORY;
+			$dismiss_url = esc_url_raw( add_query_arg( MAILCHIMP_MAILMUNCH_PREFIX. '_dismiss_review_notice', '1', admin_url() ) );
+
+			$review_message = '<div class="mailmunch-review-logo"><img src="'.plugins_url( 'admin/img/mailchimp_logo.png', dirname(__FILE__) ) .'" /></div>';
+			$review_message .= sprintf( __( "You have been using <strong>%s</strong> for a few weeks now. We hope you are enjoying the features. Please consider leaving us a nice review. Reviews help people find our plugin and lets you provide us with useful feedback which helps us improve." , MAILCHIMP_MAILMUNCH_SLUG ), $this->plugin_name );
+			$review_message .= "<div class='mailmunch-buttons'>";
+			$review_message .= sprintf( "<a href='%s' target='_blank' class='button-secondary'><span class='dashicons dashicons-star-filled'></span>" . __( "Leave a Review" , MAILCHIMP_MAILMUNCH_SLUG ) . "</a>", $review_url );
+			$review_message .= sprintf( "<a href='%s' target='_blank' class='button-secondary'><span class='dashicons dashicons-no-alt'></span>" . __( "Dismiss" , MAILCHIMP_MAILMUNCH_SLUG ) . "</a>", $dismiss_url );
+			$review_message .= "</div>";
+?>
+			<div class="mailmunch-review-notice">
+				<?php echo $review_message; ?>
+			</div>
+<?php
+		}
+	}
+
+	/**
+	 * Dismiss review notice
+	 *
+	 * @since    2.1.4
+	 */
+	public function dismiss_review_notice() {
+		if ( isset( $_GET[MAILCHIMP_MAILMUNCH_PREFIX. '_dismiss_review_notice'] ) ) {
+			add_option( MAILCHIMP_MAILMUNCH_PREFIX. '_dismiss_review_notice', 'true' );
 		}
 	}
 
