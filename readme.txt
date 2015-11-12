@@ -163,6 +163,12 @@ With MailChimp you can build a list of email subscribers. MailChimp allows you t
 
 == Changelog ==
 
+= MailChimp Forms 2.1.4 =
+* MailChimp feedback notice
+
+= MailChimp Forms 2.1.3 =
+* MailChimp easy activation
+
 = MailChimp Forms 2.1.2 =
 * Fixed MailChimp typo
 
