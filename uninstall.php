@@ -35,3 +35,6 @@ delete_option('mc_mm_site_id');
 delete_option('mc_mm_mailchimp_access_token');
 delete_option('mc_mm_mailchimp_list_id');
 delete_option('mc_mm_skip_onboarding');
+delete_option('mc_mm_activation_redirect');
+delete_option('mc_mm_activation_date');
+delete_option('mc_mm_dismiss_review_notice');

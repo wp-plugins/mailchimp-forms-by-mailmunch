@@ -45,6 +45,16 @@
   text-align: center;
 }
 
+.settings-table .inside-container p {
+  font-size: 11px;
+  padding: 0px 12px;
+  color: #999;
+}
+
+.settings-table .button {
+  margin: 0px 12px 12px;
+}
+
 .mailchimp-status {
   margin-bottom: 15px;
 }
@@ -57,6 +67,14 @@
 
 .inside-container {
   padding: 20px;
+}
+
+.inside-container .skip-link-container {
+  margin-bottom: 25px;
+}
+
+.integrate-step .inside-container .skip-link-container {
+  margin-top: 25px;
 }
 
 #connect-mailchimp {
@@ -862,4 +880,47 @@ input[type="button"].btn-block {
 }
 .clearfix {
   clear: both;
+}
+
+.mailmunch-review-logo {
+  float: left;
+  margin-right: 15px;
+}
+
+.mailmunch-review-logo img {
+  max-width: 80px;
+  max-height: 100%;
+}
+
+.mailmunch-review-notice {
+  border-left: 4px solid #11a1ec;
+  background: #fefefe;
+  padding: 10px 15px 1px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+  margin: 15px 25px 20px 5px;
+  min-height: 100px;
+}
+
+.mailmunch-review-notice .mailmunch-buttons {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.mailmunch-review-notice .mailmunch-buttons .dashicons {
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.mailmunch-review-notice .mailmunch-buttons .dashicons-star-filled {
+  color: #e6bb00;
+}
+
+.mailmunch-review-notice .mailmunch-buttons .dashicons-no-alt {
+  color: rgb(220, 58, 58);
+  line-height: 2;
+}
+
+.mailmunch-review-notice .mailmunch-buttons a {
+  margin-right: 10px;
 }

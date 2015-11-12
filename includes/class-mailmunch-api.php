@@ -1,24 +1,35 @@
 <?php
-  class Mailmunch_Api {
+  class Mailchimp_Mailmunch_Api {
     protected $base_url = MAILCHIMP_MAILMUNCH_URL;
     protected $headers = array('Accept' => 'application/json');
     protected $requestType = 'get';
     protected $mailmunch_prefix;
     protected $referral = 'mailchimp-wordpress-plugin';
-    protected $site = null;
 
     function __construct() {
       $this->mailmunch_prefix = MAILCHIMP_MAILMUNCH_PREFIX.'_';
       $this->ensureUser();
-      $this->site = $this->findOrCreateSite();
+      $this->findOrCreateSite();
     }
 
     function ensureUser() {
       $userToken = $this->getUserToken();
       if (empty($userToken)) {
         $userToken = $this->generateUserToken();
+        if( is_wp_error( $userToken ) ) {
+          return new WP_Error( 'broke', "Unable to connect to MailMunch. Please try again later." );
+        }
+        
         $this->setUserToken($userToken);
       }
+    }
+
+    function getSetting($settingName) {
+      return get_option($this->getPrefix(). $settingName);
+    }
+
+    function setSetting($settingName, $value=null) {
+      return update_option($this->getPrefix(). $settingName, $value);
     }
 
     function getUserToken() {
@@ -58,17 +69,18 @@
 
     function getSite($siteId=null) {
       if (empty($siteId)) $siteId = $this->getSiteId();
-      $sites = $this->getSites();
-      $s = false;
-      if (count($sites)) {
-        foreach ($sites as $site) {
-          if ($site->id == $siteId) {
-            $s = $site;
-            break;
-          }
-        }
+      if (empty($siteId)) return false;
+
+      $this->requestType = 'get';
+      $request = $this->ping('/sites/'. $siteId);
+
+      if( is_wp_error( $request ) ) {
+        return false;
       }
-      return $s;
+
+      $site = $request['body'];
+      $result = json_decode($site);
+      return $result;
     }
 
     function getLists($siteId=null) {
@@ -82,47 +94,31 @@
       return json_decode($request['body']);
     }
 
-    function createListAndIntegration($accessToken, $listName, $externalListId) {
-      $list = $this->createList($listName);
-      if ($list) {
-        $site = $this->getSite();
-        $integration = $this->createIntegration($site->id, $list->id, $accessToken, $externalListId );
+    function findOrCreateSite() {
+      $site = $this->getSite();
+      if (empty($site)) {
+        $siteName = get_bloginfo();
+        $decodedSiteName = html_entity_decode($siteName, ENT_QUOTES);
+        $decodedSiteName = stripslashes($decodedSiteName);
+        $site = $this->createSite($decodedSiteName, home_url());
+        if (!empty($site)) $this->setSiteId($site->id);
+      }
+      return $site;
+    }
+
+    function createIntegration($accessToken, $externalListId) {
+      $siteId = $this->getSiteId();
+      if (!empty($siteId)) {
+        $this->requestType = 'post';
+        $response = $this->ping('/wordpress/integrations/mailchimp', array(
+          'site_id' => $siteId,
+          'access_token' => $accessToken,
+          'active_list_id' => $externalListId
+        ));
+        $integration = json_decode($response['body']);
         return $integration;
       }
-    }
-
-    function findOrCreateSite() {
-      $site = $this->getSite($this->getSiteId());
-      if (empty($site)) {
-        $site = $this->createSite(get_bloginfo(), home_url());
-        $this->setSiteId($site->id);
-      }
-      return $site;
-    }
-
-    function createIntegration($siteId, $listId, $accessToken, $externalListId) {
-      $this->requestType = 'post';
-      $response = $this->ping('/wordpress/integrations/mailchimp', array(
-        'site_id' => $siteId,
-        'list_id' => $listId,
-        'access_token' => $accessToken,
-        'active_list_id' => $externalListId
-      ));
-      $site = json_decode($response['body']);
-      return $site;
-    }
-
-    function createList($listName, $siteId=null) {
-      if (empty($listName)) $listName = 'General';
-      if (empty($siteId)) { $siteId = $this->getSiteId(); }
-      $this->requestType = 'post';
-      $response = $this->ping('/sites/'. $siteId. '/lists', array(
-        'list' => array(
-          'name' => $listName,
-          )
-      ));
-      $list = json_decode($response['body']);
-      return $list;
+      return false;
     }
 
     function createSite($siteName, $domain) {
@@ -140,7 +136,6 @@
       }
 
       $site = json_decode($request['body']);
-      update_option($this->getPrefix(). 'site_id', $site->id);
       return $site;
     }
 
@@ -166,6 +161,10 @@
       return false;
     }
 
+    function setSkipOnBoarding() {
+      update_option($this->getPrefix(). 'skip_onboarding', true);
+    }
+
     function skipOnBoarding() {
       $skipOnBoarding = get_option($this->getPrefix(). 'skip_onboarding');
       return $skipOnBoarding == true;
@@ -186,7 +185,7 @@
       );
 
       $this->requestType = 'post';
-      $request = $this->ping('/wordpress/migrate_user.json', array(), true);
+      $request = $this->ping('/wordpress/migrate_user.json', array(), false);
       $this->headers = $currentHeaders;
 
       if( is_wp_error( $request ) ) {
@@ -198,24 +197,35 @@
         $this->setUserToken($request->token);
 
         // Migrate Site ID
-        $old_data = unserialize(get_option($this->getPrefix(). "data"));
+        $old_data = $this->deep_unserialize(get_option($this->getPrefix(). "data"));
         if (isset($old_data["site_id"])) {
           $this->setSiteId($old_data["site_id"]);
+          delete_option($this->getPrefix(). 'data');
         }
 
         // Delete options for old site
-        delete_option($this->getPrefix(). 'data');
         delete_option($this->getPrefix(). 'user_email');
         delete_option($this->getPrefix(). 'user_password');
         delete_option($this->getPrefix(). 'guest_user');
         delete_option($this->getPrefix(). 'wordpress_instance_id');
 
-        update_option($this->getPrefix(). 'skip_onboarding', true);
+        $this->setSkipOnBoarding();
 
         return true;
       }
 
       return false;
+    }
+
+    function deep_unserialize($value, $retries=0) {
+      $retries++;
+      if ($retries > 3) return $value;
+
+      if (is_string($value)) {
+        $value = unserialize($value);
+        if (is_string($value)) $value = $this->deep_unserialize($value, $retries);
+      }
+      return $value;
     }
 
     function generateUserToken() {
@@ -298,7 +308,7 @@
       }
 
       $newUser = json_decode($request['body']);
-      if ($newUser->site_id != $this->getSiteId()) {
+      if (intval($newUser->site_id) && $newUser->site_id != $this->getSiteId()) {
         $this->setSiteId($newUser->site_id);
       }
       return $newUser;
@@ -325,7 +335,7 @@
       }
 
       $newUser = json_decode($request['body']);
-      if ($newUser->site_id != $this->getSiteId()) {
+      if (intval($newUser->site_id) && $newUser->site_id != $this->getSiteId()) {
         $this->setSiteId($newUser->site_id);
       }
       return $newUser;
@@ -338,22 +348,20 @@
       delete_option($this->getPrefix(). 'mailchimp_list_id');
     }
     
-    function ping($path, $options=array(), $skipTokenAuth=false, $retries=0) {
-      $retries++;
-      if ($retries > 3) return new WP_Error('broke', 'Internal Server Error');
-
+    function ping($path, $options=array(), $useTokenAuth=true) {
       $type = $this->requestType;
       $url = $this->base_url. $path;
 
-      if (!$skipTokenAuth) {
-        $parseUrlQuery = parse_url($url)['query'];
-        if (!empty($parseUrlQuery)) {
-          $url .= '&token='. $this->getUserToken();
-        }
-        else {
-          $url .= '?token='. $this->getUserToken();
-        }
+      $parsedUrl = parse_url($url);
+      $parseUrlQuery = isset($parsedUrl['query']) ? $parsedUrl['query'] : null;
+      if (!empty($parseUrlQuery)) {
+        $url .= '&version='. MAILCHIMP_MAILMUNCH_VERSION;
       }
+      else {
+        $url .= '?version='. MAILCHIMP_MAILMUNCH_VERSION;
+      }
+
+      if ($useTokenAuth) { $url .= '&token='. $this->getUserToken(); }
 
       $args = array(
         'headers' => $this->headers,
@@ -372,11 +380,10 @@
         return new WP_Error( 'broke', "Internal Server Error" );
       }
 
-      if (!$skipTokenAuth) {
+      if ($useTokenAuth) {
         if (!is_wp_error( $request ) && isset($request['response']['code']) && $request['response']['code'] == 401) {
           $this->signOutUser();
-          $this->ensureUser();
-          return $this->ping($path, $options, $skipTokenAuth, $retries);
+          return new WP_Error( 'broke', 'Unauthorized. Please try again.');
         }
       }
 

@@ -30,7 +30,7 @@ class Mailchimp_Mailmunch_Activator {
 	 * @since    2.0.0
 	 */
 	public static function activate() {
-
+		update_option('mc_mm_activation_redirect', 'true');
 	}
 
 }
