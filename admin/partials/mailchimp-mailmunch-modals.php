@@ -21,28 +21,28 @@
       <div class="alert alert-danger signup-alert" role="alert">Account with this email already exists. Please sign in using your password.</div>
 
       <form action="" method="POST" id="signup_form">
-        <div class="form-group">
-          <label>Wordpress Name</label>
-          <input type="text" placeholder="Site Name" name="site_name" value="<?php echo get_bloginfo(); ?>" class="form-control">
+        <div class="mailmunch-form-group">
+          <label class="mailmunch-form-label">Wordpress Name</label>
+          <input type="text" placeholder="Site Name" name="site_name" value="<?php echo get_bloginfo(); ?>" class="mailmunch-form-control">
         </div>
 
-        <div class="form-group">
-          <label>Wordpress URL</label>
-          <input type="text" placeholder="Site URL" name="site_url" value="<?php echo home_url() ?>" class="form-control">
+        <div class="mailmunch-form-group">
+          <label class="mailmunch-form-label">Wordpress URL</label>
+          <input type="text" placeholder="Site URL" name="site_url" value="<?php echo home_url() ?>" class="mailmunch-form-control">
         </div>
 
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="Email Address" name="email" value="<?php echo wp_get_current_user()->user_email; ?>" class="form-control">
+        <div class="mailmunch-form-group">
+          <label class="mailmunch-form-label">Email Address</label>
+          <input type="email" placeholder="Email Address" name="email" value="<?php echo wp_get_current_user()->user_email; ?>" class="mailmunch-form-control">
         </div>
 
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" placeholder="Password" name="password" class="form-control" />
+        <div class="mailmunch-form-group">
+          <label class="mailmunch-form-label">Password</label>
+          <input type="password" placeholder="Password" name="password" class="mailmunch-form-control" />
         </div>
 
-        <div class="form-group">
-          <input type="submit" value="Sign Up &raquo;" class="btn btn-success btn-lg" />
+        <div class="mailmunch-form-group">
+          <input type="submit" value="Sign Up &raquo;" class="mailmunch-btn mailmunch-btn-success mailmunch-btn-lg" />
         </div>
       </form>
     </div>
@@ -59,17 +59,17 @@
     <div class="form-container">
       <form action="" method="POST" id="signin_form">
 
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="Email Address" name="email" class="form-control" value="" />
+        <div class="mailmunch-form-group">
+          <label class="mailmunch-form-label">Email Address</label>
+          <input type="email" placeholder="Email Address" name="email" class="mailmunch-form-control" value="" />
         </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" placeholder="Password" name="password" class="form-control" />
+        <div class="mailmunch-form-group">
+          <label class="mailmunch-form-label">Password</label>
+          <input type="password" placeholder="Password" name="password" class="mailmunch-form-control" />
         </div>
 
-        <div class="form-group">
-          <input type="submit" value="Sign In &raquo;" class="btn btn-success btn-lg" />
+        <div class="mailmunch-form-group">
+          <input type="submit" value="Sign In &raquo;" class="mailmunch-btn mailmunch-btn-success mailmunch-btn-lg" />
         </div>
       </form>
     </div>
